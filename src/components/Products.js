@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { getProducts } from '../slices/productsSlice';
 
 export class Products extends Component {
-  async componentDidMount() {
-    await this.props.getProducts();
-    console.log('ClassProps:', this.props);
-  }
-
   render() {
     return (
       <div className='showcase container'>
@@ -25,13 +18,4 @@ export class Products extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  categories: state.products.categories,
-  products: state.products.categories[0]?.products,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getProducts: () => dispatch(getProducts()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Products);
+export default Products;

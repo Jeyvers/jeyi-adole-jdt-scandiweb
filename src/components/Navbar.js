@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { connect } from 'react-redux';
+import { BagIcon } from '../icons';
 
 export class Navbar extends Component {
   render() {
@@ -7,18 +7,22 @@ export class Navbar extends Component {
       <nav>
         <ul>
           {this.props.categories.map((category) => (
-            <li key={category.name}>{category.name}</li>
+            <li
+              key={category.name}
+              onClick={() => this.props.getCategory(category.name)}
+            >
+              {category.name}
+            </li>
           ))}
         </ul>
+        <div className='brand-logo'>
+          <span>
+            <BagIcon />
+          </span>
+        </div>
       </nav>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  categories: state.products.categories,
-});
-
-const mapDispatchToProps = (dispatch) => ({});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;
