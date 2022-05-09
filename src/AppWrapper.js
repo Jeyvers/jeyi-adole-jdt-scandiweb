@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getData, getCategory } from './slices/productsSlice';
+import { getData, getCategory, changeCurrency } from './slices/productsSlice';
 import {} from './slices/productsSlice';
 
 import Products from './components/Products';
@@ -26,11 +26,13 @@ const mapStateToProps = (state) => ({
   products: state.products.productsList,
   currencies: state.products.currencies,
   currentCategory: state.products.currentCategory,
+  currencyInUse: state.products.currencyInUse,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getProducts: () => dispatch(getData()),
   getCategory: (category) => dispatch(getCategory(category)),
+  changeCurrency: (currency) => dispatch(changeCurrency(currency)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper);

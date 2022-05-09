@@ -1,7 +1,5 @@
-import axios from 'axios';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { request, gql } from 'graphql-request';
-import { useEffect } from 'react';
 
 const url = 'http://localhost:4000/';
 
@@ -9,6 +7,7 @@ const initialState = {
   categories: [],
   productsList: [],
   currentCategory: 'all',
+  currencyInUse: '$',
   currencies: null,
   isLoading: true,
 };
@@ -21,6 +20,7 @@ const query = gql`
         id
         gallery
         name
+        brand
         prices {
           currency {
             label
@@ -70,6 +70,9 @@ const productsSlice = createSlice({
       );
       state.productsList = newproductsList.products;
     },
+    changeCurrency: (state, action) => {
+      state.currencyInUse = action.payload;
+    },
   },
 
   extraReducers: {
@@ -83,14 +86,13 @@ const productsSlice = createSlice({
 
       state.categories = action.payload.categories;
       state.currencies = action.payload.currencies;
-      console.log('PAYLOAD:', action.payload);
 
       const newproductsList = state.categories.find(
         (category) => category.name === state.currentCategory
       );
 
       state.productsList = newproductsList.products;
-      console.log('STATE:', state.products);
+      console.log(state.productsList);
     },
 
     [getData.rejected]: (state, action) => {
@@ -102,7 +104,8 @@ const productsSlice = createSlice({
   },
 });
 
-export const { displayItems, getCategory } = productsSlice.actions;
+export const { displayItems, getCategory, changeCurrency } =
+  productsSlice.actions;
 
 // console.log(cartSlice);
 export default productsSlice.reducer;

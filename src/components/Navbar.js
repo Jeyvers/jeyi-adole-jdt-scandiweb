@@ -40,7 +40,7 @@ export class Navbar extends Component {
               className='currency'
               onClick={() => this.setState({ view: !this.state.view })}
             >
-              <p>{this.state.active}</p>
+              <p>{this.props.currencyInUse}</p>
 
               {this.state.view ? <ChevronUpIcon /> : <ChevronDownIcon />}
             </div>
@@ -56,6 +56,7 @@ export class Navbar extends Component {
                   onClick={(e) => {
                     this.setState({ view: !this.state.view });
                     this.setState({ active: currency.symbol });
+                    this.props.changeCurrency(currency.symbol);
                   }}
                 >
                   <span>{currency.symbol}</span>

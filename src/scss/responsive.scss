@@ -1,2 +1,7 @@
+@import 'config';
+
 @include media-lg {
+  p {
+    display: flex;
+  }
 }
