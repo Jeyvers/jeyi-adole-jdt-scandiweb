@@ -1,0 +1,72 @@
+nav {
+  // @include flexCenter(row, space-between);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  // grid-auto-flow: column;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 80px;
+  width: 100%;
+
+  ul {
+    @include flexCenter(row, space-between);
+    max-width: 17rem;
+    li {
+      margin: 30px 0px;
+      padding: 1rem;
+      text-transform: uppercase;
+      font-weight: 600;
+
+      &.active-category {
+        color: $second-color;
+        border-bottom: 2px solid $second-color;
+      }
+    }
+  }
+
+  .nav-brand-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-curr-cart {
+    @include flexCenter(row, right);
+  }
+
+  .nav-currencies {
+    position: relative;
+
+    .currency {
+      @include flexCenter(row, center);
+      padding: 1.5rem;
+
+      p {
+        padding: 0.65rem;
+      }
+    }
+
+    .nav-currencies-options {
+      @include flexCenter(column, center);
+      position: absolute;
+      left: -10%;
+      background-color: $first-color;
+      box-shadow: $box-shadow;
+
+      p {
+        padding: 1rem 2rem;
+        font-size: $regular-font-size;
+        font-weight: $medium-font-weight;
+
+        &:hover {
+          background: $hover-color;
+        }
+
+        span {
+          padding: 3.5px;
+        }
+      }
+    }
+  }
+}

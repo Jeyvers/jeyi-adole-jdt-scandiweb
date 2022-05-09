@@ -13,10 +13,10 @@ export class AppWrapper extends Component {
 
   render() {
     return (
-      <div className='main'>
+      <main>
         <Navbar {...this.props} />
         <Products {...this.props} />
-      </div>
+      </main>
     );
   }
 }

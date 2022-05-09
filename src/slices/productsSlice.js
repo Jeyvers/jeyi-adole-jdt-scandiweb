@@ -21,6 +21,13 @@ const query = gql`
         id
         gallery
         name
+        prices {
+          currency {
+            label
+            symbol
+          }
+          amount
+        }
       }
     }
     currencies {
