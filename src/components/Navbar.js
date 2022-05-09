@@ -1,7 +1,20 @@
 import { Component } from 'react';
-import { BagIcon } from '../icons';
+import { BagIcon, CartIcon, ChevronDownIcon, ChevronUpIcon } from '../icons';
 
 export class Navbar extends Component {
+  state = {
+    active: '',
+    view: false,
+  };
+
+  componentDidMount() {
+    this.props.currencies &&
+      this.setState({
+        ...this.state,
+        active: this.props?.currencies[0].symbol,
+      });
+  }
+
   render() {
     return (
       <nav>
@@ -15,10 +28,39 @@ export class Navbar extends Component {
             </li>
           ))}
         </ul>
-        <div className='brand-logo'>
+        <div className='nav-brand-logo'>
           <span>
             <BagIcon />
           </span>
+        </div>
+        {/* NAVBAR CURRENCIES */}
+        <div className='nav-curr-cart'>
+          <div className='nav-currencies'>
+            <div onClick={() => this.setState({ view: !this.state.view })}>
+              <p>{this.state.active}</p>
+              {this.state.view ? <ChevronUpIcon /> : <ChevronDownIcon />}
+            </div>
+
+            <div
+              className={`nav-currencies-options ${
+                !this.state.view && 'hidden'
+              }`}
+            >
+              {this.props.currencies?.map((currency) => (
+                <p
+                  key={currency.symbol}
+                  id={currency.symbol}
+                  onClick={(e) => {
+                    this.setState({ view: !this.state.view });
+                    this.setState({ active: e.target.id });
+                  }}
+                >
+                  {currency.symbol + currency.label}
+                </p>
+              ))}
+            </div>
+          </div>
+          <CartIcon />
         </div>
       </nav>
     );

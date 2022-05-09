@@ -9,9 +9,7 @@ const initialState = {
   categories: [],
   productsList: [],
   currentCategory: 'all',
-  amount: 0,
-  total: 0,
-  currency: null,
+  currencies: null,
   isLoading: true,
 };
 
@@ -24,6 +22,10 @@ const query = gql`
         gallery
         name
       }
+    }
+    currencies {
+      label
+      symbol
     }
   }
 `;
@@ -40,28 +42,14 @@ const query = gql`
 //   }
 // }
 
-export const getProducts = createAsyncThunk(
-  'products/getProducts',
-  async () => {
-    try {
-      const res = await request(url, query);
-      return res;
-    } catch (error) {
-      console.log(error);
-    }
+export const getData = createAsyncThunk('products/getData', async () => {
+  try {
+    const res = await request(url, query);
+    return res;
+  } catch (error) {
+    console.log(error);
   }
-);
-
-// onclick((e) => setCategory(e.target.value)
-
-// useEffect(() => {
-//    const newproductsList = state.categories.find(
-//      (category) => category.name === state.currentCategory
-//    );
-
-//    state.productsList = newproductsList.products;
-//    console.log('ProductsList:', state.productsList);
-// }, [state.currentCategory])
+});
 
 const productsSlice = createSlice({
   name: 'products',
@@ -78,25 +66,27 @@ const productsSlice = createSlice({
   },
 
   extraReducers: {
-    [getProducts.pending]: (state) => {
+    [getData.pending]: (state) => {
       state.isLoading = true;
       console.log('pending');
     },
 
-    [getProducts.fulfilled]: (state, action) => {
+    [getData.fulfilled]: (state, action) => {
       state.isLoading = false;
 
       state.categories = action.payload.categories;
+      state.currencies = action.payload.currencies;
+      console.log('PAYLOAD:', action.payload);
 
       const newproductsList = state.categories.find(
         (category) => category.name === state.currentCategory
       );
 
       state.productsList = newproductsList.products;
-      console.log('ProductsList:', state.productsList);
+      console.log('STATE:', state.products);
     },
 
-    [getProducts.rejected]: (state, action) => {
+    [getData.rejected]: (state, action) => {
       console.log(action.payload);
       state.isLoading = false;
 
