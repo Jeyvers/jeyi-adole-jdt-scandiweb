@@ -21,6 +21,10 @@ export class Navbar extends Component {
         <ul>
           {this.props.categories.map((category) => (
             <li
+              className={`${
+                this.props.currentCategory === category.name &&
+                'active-category'
+              }`}
               key={category.name}
               onClick={() => this.props.getCategory(category.name)}
             >

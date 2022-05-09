@@ -25,6 +25,7 @@ const mapStateToProps = (state) => ({
   categories: state.products.categories,
   products: state.products.productsList,
   currencies: state.products.currencies,
+  currentCategory: state.products.currentCategory,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,3 +1,7 @@
 .nav-currencies-options.hidden {
-    display: none;
+  display: none;
+}
+
+.active-category {
+  color: blue;
 }
