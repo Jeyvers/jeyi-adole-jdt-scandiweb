@@ -268,6 +268,20 @@ nav .nav-currencies .nav-currencies-options p span {
   background-color: #5ece7b;
 }
 
+.single-product-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.all-images-image {
+  width: 20px;
+  height: 20px;
+}
+
 body {
   background: #fff;
 }

@@ -14,12 +14,44 @@ class SingleProduct extends Component {
   }
 
   render() {
-    return <div>SingleProduct</div>;
+    const {
+      id,
+      name,
+      inStock,
+      gallery,
+      description,
+      category,
+      attributes,
+      brand,
+      prices,
+    } = this.props.productData;
+    // const firstImage = gallery[0];
+    return (
+      <section className='single-product-container'>
+        <div className='all-images'>
+          <div className='all-images-image'>
+            {gallery?.length > 1 &&
+              gallery?.map((picture, index) => (
+                <img key={index} src={picture} alt='' />
+              ))}
+          </div>
+        </div>
+        <div className='primary-image'>
+          {/* <img src={firstImage} alt='' /> */}
+        </div>
+        <div className='single-product-information'>
+          <h1>{brand}</h1>
+          <p>{name}</p>
+          <p>{description}</p>
+          <p>{category}</p>
+        </div>
+      </section>
+    );
   }
 }
 
 const mapStateToProps = (state) => ({
-  product: state,
+  productData: state.singleProduct.productData,
 });
 
 const mapDispatchToProps = (dispatch) => ({

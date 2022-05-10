@@ -50,13 +50,15 @@ export const getSingleProductData = createAsyncThunk(
 
 const singleProductSlice = createSlice({
   name: 'singleProduct',
-  initialState: [],
+  initialState: {
+    productData: [],
+  },
   reducers: {},
   extraReducers: {
     [getSingleProductData.fulfilled]: (state, action) => {
-      state = action.payload.product;
+      state.productData = action.payload.product;
       console.log('ACTION:', action);
-      console.log('STATE', state);
+      console.log('STATE', state.productData);
     },
   },
 });
