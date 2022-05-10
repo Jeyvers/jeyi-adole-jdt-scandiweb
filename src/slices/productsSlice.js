@@ -16,10 +16,12 @@ const query = gql`
   {
     categories {
       name
+
       products {
         id
         gallery
         name
+        inStock
         brand
         prices {
           currency {

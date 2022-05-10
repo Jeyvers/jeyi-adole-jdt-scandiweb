@@ -5,7 +5,7 @@ nav {
   // grid-auto-flow: column;
   align-items: center;
   justify-content: space-between;
-
+  z-index: 1000;
   height: 80px;
   width: 100%;
 
@@ -17,6 +17,8 @@ nav {
       padding: 1rem;
       text-transform: uppercase;
       font-weight: 600;
+      color: $third-color;
+      cursor: pointer;
 
       &.active-category {
         color: $second-color;
@@ -49,6 +51,7 @@ nav {
 
     .nav-currencies-options {
       @include flexCenter(column, center);
+      z-index: 1000;
       position: absolute;
       left: -10%;
       background-color: $first-color;

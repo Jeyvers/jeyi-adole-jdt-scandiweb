@@ -53,6 +53,7 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  z-index: 1000;
   height: 80px;
   width: 100%;
 }
@@ -79,6 +80,8 @@ nav ul li {
   padding: 1rem;
   text-transform: uppercase;
   font-weight: 600;
+  color: #000000;
+  cursor: pointer;
 }
 
 nav ul li.active-category {
@@ -153,6 +156,7 @@ nav .nav-currencies .nav-currencies-options {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  z-index: 1000;
   position: absolute;
   left: -10%;
   background-color: #fff;
@@ -172,6 +176,10 @@ nav .nav-currencies .nav-currencies-options p:hover {
 
 nav .nav-currencies .nav-currencies-options p span {
   padding: 3.5px;
+}
+
+.product-container {
+  position: relative;
 }
 
 .products {
@@ -210,14 +218,37 @@ nav .nav-currencies .nav-currencies-options p span {
   height: 300px;
 }
 
+.products .product-outOfStock {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  opacity: 0.6;
+  font-weight: 400;
+}
+
 .products-container h1 {
   padding: 2rem 0;
   text-transform: capitalize;
 }
 
+.product-container a {
+  color: #000000;
+}
+
 .product-information {
   position: relative;
   font-size: 1.125rem;
+  padding: 1rem 0;
 }
 
 .product-information p {
@@ -228,17 +259,13 @@ nav .nav-currencies .nav-currencies-options p span {
   font-weight: 500;
 }
 
-.in-cart-icon {
-  border-radius: 50%;
-  padding: 1rem;
-  color: #fff !important;
-  background-color: #5ece7b;
+.in-cart-icon p {
   position: absolute;
-}
-
-.in-cart-icon .in-cart-icon svg {
-  color: #fff !important;
-  fill: #fff;
+  top: -30px;
+  padding: 1rem;
+  border-radius: 50%;
+  left: 80%;
+  background-color: #5ece7b;
 }
 
 body {

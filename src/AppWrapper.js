@@ -5,6 +5,8 @@ import {} from './slices/productsSlice';
 
 import Products from './components/Products';
 import Navbar from './components/Navbar';
+import { Route, Routes } from 'react-router';
+import SingleProduct from './components/SingleProduct';
 
 export class AppWrapper extends Component {
   async componentDidMount() {
@@ -15,7 +17,18 @@ export class AppWrapper extends Component {
     return (
       <main>
         <Navbar {...this.props} />
-        <Products {...this.props} />
+        <Routes>
+          <Route exact path='/' element={<Products {...this.props} />} />
+          <Route
+            path='/products/:productId'
+            element={<SingleProduct currencyInUse={this.props.currencyInUse} />}
+          />
+          <Route
+            path='*'
+            element={<h2>Nothing here. Please go back to main page.</h2>}
+          />
+        </Routes>
+        {/* <Products {...this.props} /> */}
       </main>
     );
   }

@@ -1,9 +1,14 @@
 import { Component } from 'react';
-import { BagIcon, CartIcon, ChevronDownIcon, ChevronUpIcon } from '../icons';
+import { Link } from 'react-router-dom';
+import {
+  BagIcon,
+  CartIconBlack,
+  ChevronDownIcon,
+  ChevronUpIcon,
+} from '../icons';
 
 export class Navbar extends Component {
   state = {
-    active: '$',
     view: false,
   };
 
@@ -13,16 +18,17 @@ export class Navbar extends Component {
         <div className='div'>
           <ul>
             {this.props.categories.map((category) => (
-              <li
-                className={`${
-                  this.props.currentCategory === category.name &&
-                  'active-category'
-                }`}
-                key={category.name}
-                onClick={() => this.props.getCategory(category.name)}
-              >
-                {category.name}
-              </li>
+              <Link key={category.name} to={'/'}>
+                <li
+                  className={`${
+                    this.props.currentCategory === category.name &&
+                    'active-category'
+                  }`}
+                  onClick={() => this.props.getCategory(category.name)}
+                >
+                  {category.name}
+                </li>
+              </Link>
             ))}
           </ul>
         </div>
@@ -65,7 +71,7 @@ export class Navbar extends Component {
               ))}
             </div>
           </div>
-          <CartIcon />
+          <CartIconBlack />
         </div>
       </nav>
     );
