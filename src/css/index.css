@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto+Condensed:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&family=Roboto+Condensed:wght@700&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -285,7 +285,31 @@ nav .nav-currencies .nav-currencies-options p span {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin-top: 4rem;
+  margin: 4rem 0;
+}
+
+.single-product-information {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  gap: 30px;
+}
+
+.single-product-information .titles h1 {
+  margin-bottom: .5rem;
 }
 
 .all-images {
@@ -321,7 +345,8 @@ nav .nav-currencies .nav-currencies-options p span {
 }
 
 .single-product-information {
-  margin: 0 4rem;
+  margin-left: 4rem;
+  margin-bottom: 4rem;
 }
 
 .single-product-information h1 {
@@ -332,6 +357,81 @@ nav .nav-currencies .nav-currencies-options p span {
 .single-product-information h3 {
   font-weight: 400;
   font-size: 1.8rem;
+}
+
+.attribute h4,
+.price h4 {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-family: 'Roboto Condensed', sans-serif;
+  line-height: 18px;
+  font-size: 1.25rem;
+  margin-bottom: .75rem;
+}
+
+.name-attributes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.name-attributes .text-attribute {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 2px solid #000000;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  min-width: 60px;
+  height: 50px;
+  padding: .5rem;
+  margin: 1rem .2rem;
+  margin-right: 0.75rem;
+}
+
+.name-attributes .swatch-attribute {
+  width: 38px;
+  height: 35px;
+  padding: 10px;
+  margin: 1rem .2rem;
+}
+
+.name-attributes .swatch-attribute .selected-color {
+  border: red;
+}
+
+.price {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.price .price-info {
+  font-size: 1.5rem;
+  padding: .5rem 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+.add-btn {
+  background-color: #5ece7b;
+  color: #fff;
+  font-weight: 600;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 1rem 6rem;
 }
 
 .primary-image {
@@ -353,6 +453,10 @@ img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+button {
+  border: none;
 }
 
 .hidden {

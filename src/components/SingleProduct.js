@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import parse from 'html-react-parser';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router';
 import { getSingleProductData } from '../slices/singleProductSlice';
@@ -9,26 +10,57 @@ function withParams(Component) {
 
 class SingleProduct extends Component {
   constructor(props) {
-    // Calling a base class with:
     super(props);
-    // State definition
     this.state = {
       active: '',
+      selectedColor: null,
+      selectedSize: null,
+      selectedCapacity: null,
     };
 
     this.Picture = this.Picture.bind(this);
+    this.ProductAttribute = this.ProductAttribute.bind(this);
   }
-  // state = {
-  //   active: '',
-  //   handleInput = this.handleInput.bind(this);
-  // };
 
   componentDidMount() {
     let { productId } = this.props.params;
     this.props.getSingleProductData(productId);
   }
 
-  ProductAttribute() {}
+  ProductAttribute(props) {
+    const { id, name, type, items } = props.attribute;
+    const colorSwatch = type === 'swatch';
+    // if (name === 'Capacity') {
+    //   this.setState({ selectedCapacity: items[0] });
+    // } else if (name === 'Size') {
+    //   this.setState({ selectedSize: items[0] });
+    // } else if (name === 'Color') {
+    //   this.setState({
+    //     selectedColor: items[0],
+    //   });
+    // }
+
+    // console.log(this.state);
+    return (
+      <div className='attribute'>
+        <h4>{name}</h4>
+        <div className='name-attributes'>
+          {items.map((item, index) =>
+            !colorSwatch ? (
+              <span key={index} className='text-attribute'>
+                {item.value}
+              </span>
+            ) : (
+              <button
+                style={{ backgroundColor: item.value }}
+                className='swatch-attribute'
+              ></button>
+            )
+          )}
+        </div>
+      </div>
+    );
+  }
 
   Picture(props) {
     return (
@@ -54,27 +86,18 @@ class SingleProduct extends Component {
       prices,
     } = this.props.productData;
 
+    const defaultPrice = prices?.find(
+      (price) => price.currency.symbol === this.props.currencyInUse
+    );
+
     return (
       <section className='single-product-container'>
         <div className='all-images'>
           <div className='all-images-image'>
             {gallery?.length > 1 &&
-              gallery?.map((picture, index) => {
-                return (
-                  <this.Picture
-                    key={index}
-                    picture={picture}
-                    setState={this.setState}
-                  />
-                  // <div
-                  //   key={index}
-                  //   className='single-product-image'
-                  //   onClick={() => this.setState({ active: picture })}
-                  // >
-                  //   <img src={picture} alt='' />
-                  // </div>
-                );
-              })}
+              gallery?.map((picture, index) => (
+                <this.Picture key={index} picture={picture} />
+              ))}
           </div>
           <div className='primary-image'>
             <img
@@ -86,10 +109,29 @@ class SingleProduct extends Component {
           </div>
         </div>
         <div className='single-product-information'>
-          <h1>{brand}</h1>
-          <h3>{name}</h3>
-          {description}
-          <p>{category}</p>
+          <div className='titles'>
+            <h1>{brand}</h1>
+            <h3>{name}</h3>
+          </div>
+          <div className='attributes'>
+            {attributes?.map((attribute) => (
+              <this.ProductAttribute key={attribute.id} attribute={attribute} />
+            ))}
+            <div className='price'>
+              <h4>Price: </h4>
+              <h4 className='price-info'>
+                {defaultPrice?.currency.symbol}
+                {defaultPrice?.amount}
+              </h4>
+            </div>
+            <button disabled={!inStock} className='add-btn'>
+              ADD TO CART
+            </button>
+          </div>
+
+          {parse(`${description}`)}
+
+          {/* <p>{category}</p> */}
         </div>
       </section>
     );
