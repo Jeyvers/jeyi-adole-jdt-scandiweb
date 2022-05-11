@@ -8,9 +8,37 @@ function withParams(Component) {
 }
 
 class SingleProduct extends Component {
+  constructor(props) {
+    // Calling a base class with:
+    super(props);
+    // State definition
+    this.state = {
+      active: '',
+    };
+
+    this.Picture = this.Picture.bind(this);
+  }
+  // state = {
+  //   active: '',
+  //   handleInput = this.handleInput.bind(this);
+  // };
+
   componentDidMount() {
     let { productId } = this.props.params;
     this.props.getSingleProductData(productId);
+  }
+
+  ProductAttribute() {}
+
+  Picture(props) {
+    return (
+      <div
+        className='single-product-image'
+        onClick={() => this.setState({ active: props.picture })}
+      >
+        <img src={props.picture} alt='' />
+      </div>
+    );
   }
 
   render() {
@@ -25,24 +53,42 @@ class SingleProduct extends Component {
       brand,
       prices,
     } = this.props.productData;
-    // const firstImage = gallery[0];
+
     return (
       <section className='single-product-container'>
         <div className='all-images'>
           <div className='all-images-image'>
             {gallery?.length > 1 &&
-              gallery?.map((picture, index) => (
-                <img key={index} src={picture} alt='' />
-              ))}
+              gallery?.map((picture, index) => {
+                return (
+                  <this.Picture
+                    key={index}
+                    picture={picture}
+                    setState={this.setState}
+                  />
+                  // <div
+                  //   key={index}
+                  //   className='single-product-image'
+                  //   onClick={() => this.setState({ active: picture })}
+                  // >
+                  //   <img src={picture} alt='' />
+                  // </div>
+                );
+              })}
           </div>
-        </div>
-        <div className='primary-image'>
-          {/* <img src={firstImage} alt='' /> */}
+          <div className='primary-image'>
+            <img
+              src={
+                this.state.active ? this.state.active : gallery && gallery[0]
+              }
+              alt=''
+            />
+          </div>
         </div>
         <div className='single-product-information'>
           <h1>{brand}</h1>
-          <p>{name}</p>
-          <p>{description}</p>
+          <h3>{name}</h3>
+          {description}
           <p>{category}</p>
         </div>
       </section>

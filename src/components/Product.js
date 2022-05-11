@@ -24,6 +24,11 @@ export class Product extends Component {
               {defaultPrice.amount}
             </p>
           </div>
+          {!inStock && (
+            <div className='product-outOfStock'>
+              <p>OUT OF STOCK</p>
+            </div>
+          )}
         </div>
       </Link>
     );

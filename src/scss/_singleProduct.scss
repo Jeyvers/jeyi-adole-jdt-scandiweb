@@ -1,9 +1,42 @@
 .single-product-container {
+  @include flexCenter(row, initial);
+  align-items: flex-start;
+  margin-top: 4rem;
+}
+
+.all-images {
   display: flex;
-  justify-content: space-between;
+  gap: 3rem;
 }
 
 .all-images-image {
-  width: 20px;
-  height: 20px;
+  @include flexCenter(column, initial);
+  gap: 3rem;
+  height: 380px;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.single-product-image {
+  width: 100px;
+  height: 90px;
+}
+
+.single-product-information {
+  margin: 0 4rem;
+
+  h1 {
+    font-weight: $semiBold-font-weight;
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-weight: $regular-font-weight;
+    font-size: 1.8rem;
+  }
+}
+
+.primary-image {
+  height: 380px;
+  width: 430px;
 }

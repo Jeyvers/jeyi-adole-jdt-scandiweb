@@ -38,9 +38,9 @@ ul {
 
 @mixin flexCenter($direction, $justification) {
   display: flex;
+  flex-direction: $direction;
   justify-content: $justification;
   align-items: center;
-  flex-direction: $direction;
 }
 
 @mixin media-lg {

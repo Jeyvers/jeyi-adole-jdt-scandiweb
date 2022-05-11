@@ -13,11 +13,6 @@ export class Products extends Component {
             );
             return (
               <div className='product-container' key={product.id}>
-                {!product.inStock && (
-                  <div className='product-outOfStock'>
-                    <p>OUT OF STOCK</p>
-                  </div>
-                )}
                 <Product {...product} defaultPrice={defaultPrice} />
               </div>
             );
