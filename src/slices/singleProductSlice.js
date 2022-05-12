@@ -52,15 +52,30 @@ const singleProductSlice = createSlice({
   name: 'singleProduct',
   initialState: {
     productData: [],
+    attributes: {},
   },
-  reducers: {},
+  reducers: {
+    setAttributeValue: (state, action) => {
+      console.log(action.payload.name, action.payload.value);
+      state.attributes[action.payload.name] = action.payload.value;
+      console.log('ATTR', state.attributes[action.payload.name]);
+    },
+  },
   extraReducers: {
     [getSingleProductData.fulfilled]: (state, action) => {
+      const newAttrArray = {};
       state.productData = action.payload.product;
-      console.log('ACTION:', action);
+      action.payload.product.attributes.map((attribute) => {
+        const { name, items } = attribute;
+        return (newAttrArray[name] = items[0].value);
+      });
+      state.attributes = newAttrArray;
       console.log('STATE', state.productData);
+      console.log('ATTR', state.attributes);
     },
   },
 });
+
+export const { setAttributeValue } = singleProductSlice.actions;
 
 export default singleProductSlice.reducer;
