@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { request, gql } from 'graphql-request';
+import { setCart } from './singleProductSlice';
 
 const url = 'http://localhost:4000/';
 
 const initialState = {
   categories: [],
   productsList: [],
+  // cart: [],
   currentCategory: 'all',
   currencyInUse: '$',
   currencies: null,
@@ -19,9 +21,21 @@ const query = gql`
 
       products {
         id
-        gallery
         name
         inStock
+        gallery
+        description
+        category
+        attributes {
+          id
+          name
+          type
+          items {
+            displayValue
+            value
+            id
+          }
+        }
         brand
         prices {
           currency {
@@ -75,6 +89,14 @@ const productsSlice = createSlice({
     changeCurrency: (state, action) => {
       state.currencyInUse = action.payload;
     },
+    // addItem: (state, action) => {
+    //   console.log(action.payload);
+    //   const item = state.productsList.find(
+    //     (product) => product.id === action.payload.id
+    //   );
+    //   state.cart = [...state.cart, item];
+    //   console.log(item.id, ...state.cart);
+    // },
   },
 
   extraReducers: {

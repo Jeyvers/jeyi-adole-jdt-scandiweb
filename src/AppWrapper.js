@@ -7,10 +7,13 @@ import Products from './components/Products';
 import Navbar from './components/Navbar';
 import { Route, Routes } from 'react-router';
 import SingleProduct from './components/SingleProduct';
+import Cart from './components/Cart';
+import { loadProducts } from './slices/cartSlice';
 
 export class AppWrapper extends Component {
   async componentDidMount() {
     await this.props.getProducts();
+    await this.props.loadProducts(this.props.products);
   }
 
   render() {
@@ -22,6 +25,10 @@ export class AppWrapper extends Component {
           <Route
             path='/products/:productId'
             element={<SingleProduct currencyInUse={this.props.currencyInUse} />}
+          />
+          <Route
+            path='/cart'
+            element={<Cart products={this.props.products} />}
           />
           <Route
             path='*'
@@ -46,6 +53,7 @@ const mapDispatchToProps = (dispatch) => ({
   getProducts: () => dispatch(getData()),
   getCategory: (category) => dispatch(getCategory(category)),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
+  loadProducts: (products) => dispatch(loadProducts(products)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper);

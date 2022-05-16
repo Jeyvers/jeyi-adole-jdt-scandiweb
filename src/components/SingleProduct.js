@@ -6,12 +6,13 @@ import {
   getSingleProductData,
   setAttributeValue,
 } from '../slices/singleProductSlice';
+import { addItem } from '../slices/cartSlice';
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
 }
 
-class SingleProduct extends Component {
+export class SingleProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,6 +24,7 @@ class SingleProduct extends Component {
 
     this.Picture = this.Picture.bind(this);
     this.ProductAttribute = this.ProductAttribute.bind(this);
+    this.SingleProductInformation = this.SingleProductInformation.bind(this);
   }
 
   componentDidMount() {
@@ -33,7 +35,7 @@ class SingleProduct extends Component {
   ProductAttribute(props) {
     const { id, name, type, items } = props.attribute;
     let defaultValue;
-    const allAttributes = Object.keys(this.props.allAttributes);
+    const allAttributes = Object.keys(props.allAttributes);
     allAttributes.map(
       (attr) => attr === name && (defaultValue = this.props.allAttributes[name])
     );
@@ -81,6 +83,37 @@ class SingleProduct extends Component {
     );
   }
 
+  SingleProductInformation(props) {
+    const { name, brand, attributes } = props.information;
+    const { allAttributes } = props;
+    return (
+      <>
+        <div className='titles'>
+          <h1>{brand}</h1>
+          <h3>{name}</h3>
+        </div>
+        <div className='attributes'>
+          {attributes?.map((attribute) => {
+            return (
+              <this.ProductAttribute
+                key={attribute.id}
+                attribute={attribute}
+                allAttributes={allAttributes}
+              />
+            );
+          })}
+          <div className='price'>
+            <h4>Price: </h4>
+            <h4 className='price-info'>
+              {props.defaultPrice?.currency.symbol}
+              {props.defaultPrice?.amount.toLocaleString()}
+            </h4>
+          </div>
+        </div>
+      </>
+    );
+  }
+
   render() {
     const {
       id,
@@ -117,35 +150,21 @@ class SingleProduct extends Component {
           </div>
         </div>
         <div className='single-product-information'>
-          <div className='titles'>
-            <h1>{brand}</h1>
-            <h3>{name}</h3>
-          </div>
-          <div className='attributes'>
-            {attributes?.map((attribute) => {
-              return (
-                <this.ProductAttribute
-                  key={attribute.id}
-                  attribute={attribute}
-                />
-              );
-            })}
-            <div className='price'>
-              <h4>Price: </h4>
-              <h4 className='price-info'>
-                {defaultPrice?.currency.symbol}
-                {defaultPrice?.amount}
-              </h4>
-            </div>
-
-            <button disabled={!inStock} className='add-btn'>
-              ADD TO CART
-            </button>
-          </div>
-
+          <this.SingleProductInformation
+            information={this.props.productData}
+            allAttributes={this.props.allAttributes}
+            defaultPrice={defaultPrice}
+          />
+          <button
+            disabled={!inStock}
+            onClick={() => {
+              this.props.addItem(id);
+            }}
+            className='add-btn'
+          >
+            ADD TO CART
+          </button>
           {parse(`${description}`)}
-
-          {/* <p>{category}</p> */}
         </div>
       </section>
     );
@@ -161,9 +180,14 @@ const mapDispatchToProps = (dispatch) => ({
   getSingleProductData: (id) => dispatch(getSingleProductData(id)),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
+  addItem: (id) => dispatch(addItem({ id })),
 });
 
+const SingleProductClass = new SingleProduct();
+
 // export default withParams(SingleProduct);
+
+export { SingleProductClass };
 export default withParams(
   connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 );

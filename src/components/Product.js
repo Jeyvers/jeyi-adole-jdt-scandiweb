@@ -3,6 +3,21 @@ import { Link } from 'react-router-dom';
 import { CartIconWhite } from '../icons';
 
 export class Product extends Component {
+  constructor(props) {
+    super(props);
+    this.Price = this.Price.bind(this);
+  }
+
+  Price(props) {
+    return (
+      <p className='product-price'>
+        {props.defaultPrice.currency.symbol}
+
+        {props.defaultPrice.amount.toLocaleString()}
+      </p>
+    );
+  }
+
   render() {
     const { id, gallery, name, inStock, defaultPrice } = this.props;
     return (
@@ -18,11 +33,7 @@ export class Product extends Component {
               </p>
             </div>
             <span>{name}</span>
-            <p className='product-price'>
-              {defaultPrice.currency.symbol}
-
-              {defaultPrice.amount}
-            </p>
+            <this.Price defaultPrice={defaultPrice} />
           </div>
           {!inStock && (
             <div className='product-outOfStock'>
