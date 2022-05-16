@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  increase,
+  decrease,
+  removeItem,
+  calculateTotals,
+} from '../slices/cartSlice';
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
 
@@ -14,6 +20,7 @@ export class Cart extends Component {
                 key={cartItem.id}
                 {...cartItem}
                 currencyInUse={this.props.currencyInUse}
+                {...this.props}
               />
             );
           })}
@@ -28,6 +35,10 @@ const mapStateToProps = (state) => ({
   currencyInUse: state.products.currencyInUse,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  increase: (id) => dispatch(increase({ id })),
+  decrease: (id) => dispatch(decrease({ id })),
+  removeItem: (id) => dispatch(removeItem(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

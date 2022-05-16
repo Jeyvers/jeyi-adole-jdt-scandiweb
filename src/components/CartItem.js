@@ -4,7 +4,7 @@ import { SingleProductClass } from './SingleProduct';
 
 export class CartItem extends Component {
   render() {
-    const { brand, name, prices, attributes, amount, gallery } = this.props;
+    const { id, brand, name, prices, attributes, amount, gallery } = this.props;
 
     const defaultPrice = prices?.find(
       (price) => price.currency.symbol === this.props.currencyInUse
@@ -34,9 +34,19 @@ export class CartItem extends Component {
         </div>
         <div className='cart-showcase'>
           <div className='cart-item-amount'>
-            <FaPlus />
+            <span onClick={() => this.props.increase(id)}>
+              <FaPlus />
+            </span>
             <span> {amount} </span>
-            <FaMinus />
+            <FaMinus
+              onClick={() => {
+                if (amount < 1) {
+                  this.props.removeItem(id);
+                } else {
+                  this.props.decrease(id);
+                }
+              }}
+            />
           </div>
           <div className='cart-item-img'>
             <img src={gallery && gallery[0]} alt='' />

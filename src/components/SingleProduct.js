@@ -134,6 +134,7 @@ export class SingleProduct extends Component {
 
     return (
       <section className='single-product-container'>
+        <Link to='/cart'>Go to cart</Link>
         <div className='all-images'>
           <div className='all-images-image'>
             {gallery?.length > 1 &&
