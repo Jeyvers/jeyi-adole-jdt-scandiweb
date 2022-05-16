@@ -26,10 +26,7 @@ export class AppWrapper extends Component {
             path='/products/:productId'
             element={<SingleProduct currencyInUse={this.props.currencyInUse} />}
           />
-          <Route
-            path='/cart'
-            element={<Cart products={this.props.products} />}
-          />
+          <Route path='/cart' element={<Cart />} />
           <Route
             path='*'
             element={<h2>Nothing here. Please go back to main page.</h2>}

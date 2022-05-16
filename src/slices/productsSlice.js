@@ -7,7 +7,6 @@ const url = 'http://localhost:4000/';
 const initialState = {
   categories: [],
   productsList: [],
-  // cart: [],
   currentCategory: 'all',
   currencyInUse: '$',
   currencies: null,
@@ -89,14 +88,6 @@ const productsSlice = createSlice({
     changeCurrency: (state, action) => {
       state.currencyInUse = action.payload;
     },
-    // addItem: (state, action) => {
-    //   console.log(action.payload);
-    //   const item = state.productsList.find(
-    //     (product) => product.id === action.payload.id
-    //   );
-    //   state.cart = [...state.cart, item];
-    //   console.log(item.id, ...state.cart);
-    // },
   },
 
   extraReducers: {
@@ -131,5 +122,4 @@ const productsSlice = createSlice({
 export const { displayItems, getCategory, changeCurrency } =
   productsSlice.actions;
 
-// console.log(cartSlice);
 export default productsSlice.reducer;

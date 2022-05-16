@@ -7,6 +7,7 @@ import {
   setAttributeValue,
 } from '../slices/singleProductSlice';
 import { addItem } from '../slices/cartSlice';
+import { Link } from 'react-router-dom';
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;

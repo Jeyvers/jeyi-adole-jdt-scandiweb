@@ -17,7 +17,7 @@ const cartSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       console.log('WORRIED', state.products);
-      state.cartItems = [...state.cartItems, item];
+      state.cartItems = [...state.cartItems, { ...item, amount: 0 }];
       console.log(state.cartItems);
       //   console.log(item.id, state.cart[0].id);
     },
