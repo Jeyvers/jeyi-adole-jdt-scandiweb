@@ -40,7 +40,7 @@ export class CartItem extends Component {
             <span> {amount} </span>
             <FaMinus
               onClick={() => {
-                if (amount < 1) {
+                if (amount === 1) {
                   this.props.removeItem(id);
                 } else {
                   this.props.decrease(id);

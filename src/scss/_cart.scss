@@ -1,0 +1,26 @@
+.cart-items-container {
+    margin: 3em auto;
+
+    .cart-items {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+
+            .cart-showcase {
+                display: flex;
+
+                .cart-item-amount {
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+                    justify-content: space-between;
+                }
+            }
+        }
+    }
+}

@@ -12,6 +12,7 @@ nav {
   ul {
     @include flexCenter(row, space-between);
     max-width: 17rem;
+
     li {
       margin: 30px 0px;
       padding: 1rem;
@@ -70,6 +71,22 @@ nav {
           padding: 3.5px;
         }
       }
+    }
+  }
+
+  .cart-icon {
+    position: relative;
+
+    .cart-icon-amount {
+      position: absolute;
+      background: $third-color;
+      color: $first-color;
+      padding: .2rem;
+      text-align: center;
+      font-weight: $semiBold-font-weight;
+      border-radius: 10px;
+      top: -17px;
+      left: 10px;
     }
   }
 }

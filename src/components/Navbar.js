@@ -71,7 +71,10 @@ export class Navbar extends Component {
               ))}
             </div>
           </div>
-          <CartIconBlack />
+          <div className='cart-icon'>
+            <span className='cart-icon-amount'>{this.props.amount}</span>
+            <CartIconBlack />
+          </div>
         </div>
       </nav>
     );

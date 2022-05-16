@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getData, getCategory, changeCurrency } from './slices/productsSlice';
-import {} from './slices/productsSlice';
+import { calculateTotals } from './slices/cartSlice';
 
 import Products from './components/Products';
 import Navbar from './components/Navbar';
@@ -14,6 +14,8 @@ export class AppWrapper extends Component {
   async componentDidMount() {
     await this.props.getProducts();
     await this.props.loadProducts(this.props.products);
+
+    this.props.calculateTotals();
   }
 
   render() {
@@ -26,7 +28,14 @@ export class AppWrapper extends Component {
             path='/products/:productId'
             element={<SingleProduct currencyInUse={this.props.currencyInUse} />}
           />
-          <Route path='/cart' element={<Cart />} />
+          <Route
+            path='/cart'
+            element={
+              <>
+                <Cart />
+              </>
+            }
+          />
           <Route
             path='*'
             element={<h2>Nothing here. Please go back to main page.</h2>}
@@ -44,6 +53,7 @@ const mapStateToProps = (state) => ({
   currencies: state.products.currencies,
   currentCategory: state.products.currentCategory,
   currencyInUse: state.products.currencyInUse,
+  amount: state.cart.amount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -51,6 +61,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCategory: (category) => dispatch(getCategory(category)),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
   loadProducts: (products) => dispatch(loadProducts(products)),
+  calculateTotals: (id) => dispatch(calculateTotals(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppWrapper);

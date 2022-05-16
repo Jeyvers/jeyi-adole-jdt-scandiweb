@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  increase,
-  decrease,
-  removeItem,
-  calculateTotals,
-} from '../slices/cartSlice';
+import { increase, decrease, removeItem } from '../slices/cartSlice';
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
 
