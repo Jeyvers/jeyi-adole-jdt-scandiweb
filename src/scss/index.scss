@@ -1,11 +1,13 @@
 @import 'config';
-@import 'responsive';
 @import 'navbar';
 @import 'products';
 @import 'singleProduct';
 @import 'cart';
+@import 'responsive';
 
 body {
+  width: 100vw;
+  height: 100vh;
   background: $first-color;
 }
 
@@ -22,6 +24,7 @@ img {
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 .hidden {

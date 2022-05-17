@@ -47,7 +47,25 @@ ul {
 }
 
 @mixin media-lg {
+  @media screen and (min-width: 1011px) and (min-width: 1284px) {
+    @content;
+  }
+}
+
+@mixin media-min-lg {
   @media screen and (min-width: 1011px) {
+    @content;
+  }
+}
+
+@mixin media-md {
+  @media screen and (max-width: 1000px) {
+    @content;
+  }
+}
+
+@mixin media-sm {
+  @media screen and (max-width: 500px) {
     @content;
   }
 }

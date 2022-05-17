@@ -2,7 +2,7 @@ nav {
   // @include flexCenter(row, space-between);
   display: grid;
   grid-template-columns: repeat(3, 1fr) auto;
-  // grid-auto-flow: column;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   z-index: 1000;

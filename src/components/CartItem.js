@@ -9,18 +9,22 @@ export class CartItem extends Component {
     const defaultPrice = prices?.find(
       (price) => price.currency.symbol === this.props.currencyInUse
     );
+
+    const finalPrice = defaultPrice.amount * amount;
     return (
       <div className='cart-item'>
         <div className='cart-info'>
-          <h3>{brand}</h3>
-          <h3>{name}</h3>
-          <div className='price'>
-            <h5>Price: </h5>
-            <h5 className='price-info'>
-              {defaultPrice?.currency.symbol}
-              {defaultPrice?.amount.toLocaleString()}
-            </h5>
+          <div className='titles'>
+            <h1>{brand}</h1>
+            <h3>{name}</h3>
           </div>
+          <div className='price'>
+            <h4 className='price-info'>
+              {defaultPrice?.currency.symbol}
+              {finalPrice?.toFixed(2).toLocaleString()}
+            </h4>
+          </div>
+
           {console.log(this.props)}
           {attributes?.map((attribute) => {
             return (
@@ -34,11 +38,9 @@ export class CartItem extends Component {
         </div>
         <div className='cart-showcase'>
           <div className='cart-item-amount'>
-            <span onClick={() => this.props.increase(id)}>
-              <FaPlus />
-            </span>
-            <span> {amount} </span>
-            <FaMinus
+            <span onClick={() => this.props.increase(id)}>+</span>
+            <h2> {amount} </h2>
+            <span
               onClick={() => {
                 if (amount === 1) {
                   this.props.removeItem(id);
@@ -46,7 +48,9 @@ export class CartItem extends Component {
                   this.props.decrease(id);
                 }
               }}
-            />
+            >
+              -
+            </span>
           </div>
           <div className='cart-item-img'>
             <img src={gallery && gallery[0]} alt='' />

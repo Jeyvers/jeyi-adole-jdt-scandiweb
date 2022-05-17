@@ -19,7 +19,7 @@ const cartSlice = createSlice({
         (product) => product.id === action.payload.id
       );
       console.log('WORRIED', state.products);
-      state.cartItems = [...state.cartItems, { ...item, amount: 0 }];
+      state.cartItems = [...state.cartItems, { ...item, amount: 1 }];
       console.log(state.cartItems);
       //   console.log(item.id, state.cart[0].id);
     },
@@ -36,13 +36,17 @@ const cartSlice = createSlice({
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       cartItem.amount -= 1;
     },
-    calculateTotals: (state) => {
+    calculateTotals: (state, action) => {
       let amount = 0;
       let total = 0;
       state.cartItems.forEach((item) => {
+        const defaultPrice = item.prices?.find(
+          (price) => price.currency.symbol === action.payload
+        );
         amount += item.amount;
-        total += item.amount * item.price;
+        total += item.amount * defaultPrice.amount;
       });
+
       state.amount = amount;
       state.total = total;
     },

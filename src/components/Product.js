@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CartIconWhite } from '../icons';
 
 export class Product extends Component {
   constructor(props) {
@@ -27,11 +26,6 @@ export class Product extends Component {
             <img src={gallery[0]} alt={name} />
           </div>
           <div className='product-information'>
-            <div className='in-cart-icon'>
-              <p>
-                <CartIconWhite />{' '}
-              </p>
-            </div>
             <span>{name}</span>
             <this.Price defaultPrice={defaultPrice} />
           </div>
