@@ -548,6 +548,77 @@ button:disabled {
   font-weight: 700;
 }
 
+.mini-cart-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1500;
+  top: 12%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.mini-cart-container {
+  position: absolute;
+  background-color: #fff;
+  top: -0.6%;
+  right: 5%;
+  z-index: 1200;
+  padding: 0 2rem;
+  overflow-y: scroll;
+}
+
+.mini-cart-container .cart-item {
+  min-height: 180px !important;
+  gap: 20px;
+}
+
+.mini-cart-container .cart-info,
+.mini-cart-container .cart-showcase {
+  min-height: 100%;
+  max-width: 170px;
+}
+
+.mini-cart-container .cart-item-img {
+  width: 120px !important;
+}
+
+.mini-cart-container .cart-item-amount {
+  min-height: 100%;
+}
+
+.mini-cart-container .cart-item-amount > span {
+  font-size: 1.125rem;
+}
+
+.mini-cart-container .titles > * {
+  font-size: 1.5rem;
+}
+
+.mini-cart-container .price-info,
+.mini-cart-container .attribute h4 {
+  font-size: 1.125rem;
+}
+
+.mini-cart-container .swatch-attribute {
+  width: 12px;
+  height: 15px;
+  padding: 10px;
+  margin: .1rem;
+}
+
+.mini-cart-container .price {
+  margin-bottom: 0px;
+}
+
+.mini-cart-container .text-attribute {
+  min-width: 30px;
+  height: 25px;
+  padding: 1rem;
+}
+
 @media screen and (min-width: 1011px) and (min-width: 1284px) {
   .primary-image {
     width: 560px;
@@ -618,6 +689,7 @@ body {
   width: 100vw;
   height: 100vh;
   background: #fff;
+  position: relative;
 }
 
 main {

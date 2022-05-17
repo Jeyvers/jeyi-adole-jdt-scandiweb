@@ -42,3 +42,11 @@ export class Product extends Component {
 }
 
 export default Product;
+// Todos
+// Make mini cart page
+// probably implement slide functionality
+// Call for help on useEffect class equivalent
+// Make cartItem info width 100%/min-width of its parent container
+// Write responsive css for all pages and components
+// Review work
+// Call Tife & Steve to Review work

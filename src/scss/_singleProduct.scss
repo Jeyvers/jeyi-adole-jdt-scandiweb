@@ -71,10 +71,12 @@ button:disabled {
 
 .name-attributes {
   display: flex;
+
   margin: 1rem 0;
 
   .text-attribute {
     display: inline-flex;
+
     justify-content: center;
     align-items: center;
     border: 2px solid $third-color;

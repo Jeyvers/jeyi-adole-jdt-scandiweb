@@ -7,7 +7,11 @@ export class Products extends Component {
   render() {
     return (
       <>
-        <Cart></Cart>
+        <div className='mini-cart-overlay'>
+          <div className='mini-cart-container'>
+            <Cart></Cart>
+          </div>
+        </div>
         <div className='showcase'>
           <div className='products-container'>
             <h1>{this.props.currentCategory}</h1>
