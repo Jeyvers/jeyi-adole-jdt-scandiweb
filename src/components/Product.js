@@ -19,6 +19,7 @@ export class Product extends Component {
 
   render() {
     const { id, gallery, name, inStock, defaultPrice } = this.props;
+
     return (
       <Link to={`/products/${id}`}>
         <div key={id} className='product'>

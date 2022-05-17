@@ -132,6 +132,10 @@ export class SingleProduct extends Component {
       (price) => price.currency.symbol === this.props.currencyInUse
     );
 
+    const inCart = this.props.cartItems.find((item) =>
+      item.id === id ? true : false
+    );
+    console.log('inCart', inCart);
     return (
       <section className='single-product-container'>
         <Link to='/cart'>Go to cart</Link>
@@ -158,7 +162,7 @@ export class SingleProduct extends Component {
             defaultPrice={defaultPrice}
           />
           <button
-            disabled={!inStock}
+            disabled={!inStock ? !inStock : inCart}
             onClick={() => {
               this.props.addItem(id);
             }}
@@ -176,6 +180,7 @@ export class SingleProduct extends Component {
 const mapStateToProps = (state) => ({
   productData: state.singleProduct.productData,
   allAttributes: state.singleProduct.attributes,
+  cartItems: state.cart.cartItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({

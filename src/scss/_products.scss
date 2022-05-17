@@ -1,5 +1,6 @@
 .product-container {
   position: relative;
+
 }
 
 .products {
@@ -68,16 +69,20 @@
 }
 
 .in-cart-icon button {
+  display: none;
   position: absolute;
-  top: -30px;
+
+  bottom: 60px;
   padding: 1rem;
   border-radius: 50%;
   left: 80%;
   z-index: 1000;
   background-color: $second-color;
-  // cursor: pointer;
+  transition: all ease-in 3s;
+
 }
 
-.in-cart-icon button:hover {
-  cursor: pointer;
+.product-container:hover .in-cart-icon button {
+  display: block;
+
 }

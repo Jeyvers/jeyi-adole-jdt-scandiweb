@@ -13,20 +13,27 @@ export class Products extends Component {
             <h1>{this.props.currentCategory}</h1>
             <div className='products'>
               {this.props.products?.map((product) => {
+                const inCart = this.props.cartItems.find((item) =>
+                  item.id === product.id ? true : false
+                );
                 const defaultPrice = product.prices.find(
                   (price) => price.currency.symbol === this.props.currencyInUse
                 );
                 return (
                   <div className='product-container' key={product.id}>
-                    <div
-                      className='in-cart-icon'
-                      onMouseOver={(e) => (e.target.style.display = 'none')}
-                    >
-                      <button onClick={() => this.props.addItem(product.id)}>
+                    <div className='in-cart-icon'>
+                      <button
+                        disabled={inCart}
+                        onClick={() => this.props.addItem(product.id)}
+                      >
                         <CartIconWhite />
                       </button>
                     </div>
-                    <Product {...product} defaultPrice={defaultPrice} />
+                    <Product
+                      cartItems={this.props.cartItems}
+                      {...product}
+                      defaultPrice={defaultPrice}
+                    />
                   </div>
                 );
               })}
