@@ -68,14 +68,32 @@
 @include media-sm {
 
   nav {
-    padding-top: 2rem;
+    padding-top: 3rem;
   }
 
   .nav-curr-cart {
-    position: absolute;
-    left: -20px;
 
+    position: absolute;
+    left: 5px;
+    top: 7px;
   }
 
+  .mini-cart-container {
+    margin: 0;
+
+    header {
+
+      margin-top: 11rem;
+    }
+  }
+
+  .cart-item {
+    flex-direction: column;
+
+    .cart-showcase {
+      margin-top: 20px;
+      height: 260px;
+    }
+  }
 
 }

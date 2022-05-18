@@ -1,8 +1,55 @@
 import React, { Component } from 'react';
-import { FaPlus, FaMinus } from 'react-icons/fa';
-import { SingleProductClass } from './SingleProduct';
 
 export class CartItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.ProductAttribute = this.ProductAttribute.bind(this);
+  }
+
+  ProductAttribute(props) {
+    const { name, type, items } = props.attribute;
+    let defaultValue;
+    const allAttributes = Object.keys(props.allAttributes);
+    // Maps through all the attributes and sets the defaultValue to the name of the current name in map
+    allAttributes.map(
+      (attr) => attr === name && (defaultValue = props.allAttributes[name])
+    );
+    const colorSwatch = type === 'swatch';
+
+    return (
+      <div className='attribute'>
+        <h4>{name}</h4>
+        <div className='name-attributes'>
+          {items.map((item, index) => {
+            // Maps through the items and gets the value that's equal to the defaultValue
+            const defaultItem = item.value === defaultValue;
+            return !colorSwatch ? (
+              <span
+                key={index}
+                className={`text-attribute ${defaultItem && 'default'}`}
+                onClick={() => this.props.setAttributeValue(name, item.value)}
+              >
+                {item.value}
+              </span>
+            ) : (
+              <div className={` ${defaultItem && 'swatch-default'}`}>
+                <button
+                  key={index}
+                  style={{ backgroundColor: item.value }}
+                  onClick={() => {
+                    this.props.setAttributeValue(name, item.value);
+                  }}
+                  className='swatch-attribute'
+                ></button>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const { id, brand, name, prices, attributes, amount, gallery } = this.props;
 
@@ -28,10 +75,10 @@ export class CartItem extends Component {
           {console.log(this.props)}
           {attributes?.map((attribute) => {
             return (
-              <SingleProductClass.ProductAttribute
+              <this.ProductAttribute
                 key={attribute.id}
                 attribute={attribute}
-                allAttributes={attributes}
+                allAttributes={this.props.allAttributes}
               />
             );
           })}

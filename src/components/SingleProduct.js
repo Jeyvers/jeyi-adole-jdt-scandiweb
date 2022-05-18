@@ -18,9 +18,6 @@ export class SingleProduct extends Component {
     super(props);
     this.state = {
       active: '',
-      selectedColor: null,
-      selectedSize: null,
-      selectedCapacity: null,
     };
 
     this.Picture = this.Picture.bind(this);
@@ -138,7 +135,6 @@ export class SingleProduct extends Component {
     console.log('inCart', inCart);
     return (
       <section className='single-product-container'>
-        <Link to='/cart'>Go to cart</Link>
         <div className='all-images'>
           <div className='all-images-image'>
             {gallery?.length > 1 &&
@@ -190,11 +186,6 @@ const mapDispatchToProps = (dispatch) => ({
   addItem: (id) => dispatch(addItem({ id })),
 });
 
-const SingleProductClass = new SingleProduct();
-
-// export default withParams(SingleProduct);
-
-export { SingleProductClass };
 export default withParams(
   connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { CartIconWhite } from '../icons';
 import Cart from './Cart';
 import Product from './Product';
@@ -7,11 +8,6 @@ export class Products extends Component {
   render() {
     return (
       <>
-        <div className='mini-cart-overlay'>
-          <div className='mini-cart-container'>
-            <Cart></Cart>
-          </div>
-        </div>
         <div className='showcase'>
           <div className='products-container'>
             <h1>{this.props.currentCategory}</h1>

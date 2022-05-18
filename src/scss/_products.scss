@@ -46,8 +46,9 @@
   text-transform: capitalize;
 }
 
-.products-container h1:hover {
-  color: blue;
+.product-container a {
+  color: $third-color;
+
 }
 
 .product-container a {

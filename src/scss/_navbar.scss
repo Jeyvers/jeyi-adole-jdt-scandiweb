@@ -1,13 +1,26 @@
+.navbar {
+  width: 100vw;
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  background: $first-color;
+  display: grid;
+  place-items: center;
+
+}
+
 nav {
   // @include flexCenter(row, space-between);
   display: grid;
   grid-template-columns: repeat(3, 1fr) auto;
-  position: relative;
   align-items: center;
   justify-content: space-between;
-  z-index: 1000;
   height: 80px;
-  width: 100%;
+  width: 90%;
+  height: 100%;
+  background: $first-color;
+
+  // position: sticky;
 
   ul {
     @include flexCenter(row, space-between);
@@ -24,6 +37,11 @@ nav {
       &.active-category {
         color: $second-color;
         border-bottom: 2px solid $second-color;
+      }
+
+      &:hover {
+        color: $second-color;
+        opacity: 0.7;
       }
     }
   }
@@ -81,10 +99,10 @@ nav {
       position: absolute;
       background: $third-color;
       color: $first-color;
-      padding: .2rem;
+      padding: .2rem .4rem;
+      border-radius: 50%;
       text-align: center;
       font-weight: $semiBold-font-weight;
-      border-radius: 10px;
       top: -17px;
       left: 10px;
     }
