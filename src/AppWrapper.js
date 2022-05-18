@@ -68,9 +68,7 @@ export class AppWrapper extends Component {
             </div>
             <div className='mini-cart-footer-btns'>
               <button className='white-btn'>
-                <Link to='/cart' onClick={() => this.removeOrAddMiniCart()}>
-                  {'VIEW BAG '}
-                </Link>
+                <Link to='/cart'>{'VIEW BAG '}</Link>
               </button>
 
               <button className='add-btn'>CHECK OUT</button>
@@ -128,7 +126,6 @@ export class AppWrapper extends Component {
               element={<h2>Nothing here. Please go back to main page.</h2>}
             />
           </Routes>
-          {/* <Products {...this.props} /> */}
         </main>
       </>
     );

@@ -76,7 +76,9 @@ export class Navbar extends Component {
               className='cart-icon'
               onClick={(e) => this.props.removeOrAddMiniCart(e)}
             >
-              <span className='cart-icon-amount'>{this.props.amount}</span>
+              {this.props.amount > 0 && (
+                <span className='cart-icon-amount'>{this.props.amount}</span>
+              )}
               <CartIconBlack />
             </button>
           </div>
