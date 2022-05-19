@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-
+import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 export class CartItem extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      currentImg: 0,
+    };
+
     this.ProductAttribute = this.ProductAttribute.bind(this);
+    this.nextImg = this.nextImg.bind(this);
   }
 
   ProductAttribute(props) {
@@ -48,6 +53,21 @@ export class CartItem extends Component {
         </div>
       </div>
     );
+  }
+
+  prevImg(gallery) {
+    if (this.state.currentImg > 0) {
+      this.setState({ currentImg: this.state.currentImg - 1 });
+    } else {
+      this.setState({ currentImg: 0 });
+    }
+  }
+  nextImg(gallery) {
+    if (this.state.currentImg < gallery.length - 1) {
+      this.setState({ currentImg: this.state.currentImg + 1 });
+    } else {
+      this.setState({ currentImg: 0 });
+    }
   }
 
   render() {
@@ -100,7 +120,18 @@ export class CartItem extends Component {
             </span>
           </div>
           <div className='cart-item-img'>
-            <img src={gallery && gallery[0]} alt='' />
+            <img src={gallery && gallery[this.state.currentImg]} alt='' />
+            {gallery.length > 1 && (
+              <div className='cart-sliders'>
+                <button onClick={() => this.prevImg(gallery)}>
+                  <AiOutlineLeft />
+                </button>
+
+                <button onClick={() => this.nextImg(gallery)}>
+                  <AiOutlineRight />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

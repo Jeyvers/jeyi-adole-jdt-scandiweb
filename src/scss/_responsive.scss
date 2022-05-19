@@ -50,6 +50,8 @@
 
     }
 
+
+
     .name-attributes {
       flex-wrap: wrap;
 
@@ -65,6 +67,8 @@
 
 }
 
+
+
 @include media-sm {
 
   nav {
@@ -79,12 +83,15 @@
   }
 
   .mini-cart-container {
-    margin: 0;
 
     header {
-
-      margin-top: 11rem;
+      margin-top: 12rem;
     }
+  }
+
+  .remove-cart-overlay {
+    display: block;
+
   }
 
   .cart-item {

@@ -44,6 +44,25 @@
 
                 .cart-item-img {
                     width: 150px;
+                    position: relative;
+
+                    .cart-sliders {
+                        display: flex;
+                        gap: 20px;
+                        position: absolute;
+                        bottom: 10px;
+                        right: 10px;
+
+                        button {
+                            background: $third-color;
+                            color: $first-color;
+                            display: inline-flex;
+                            padding: .1rem;
+                            font-size: $medium-font-size;
+                            font-weight: lighter !important;
+                            // padding: .1rem;
+                        }
+                    }
                 }
             }
         }
@@ -94,17 +113,19 @@
     background-color: $first-color;
     margin-top: 100px;
     margin-bottom: 100px;
-    width: 400px;
-    margin-right: 5vw;
+    min-width: 400px;
     float: right;
     z-index: 1200;
     padding: 0 2rem;
     overflow: scroll;
     height: 100%;
+    margin: 0;
+    margin-right: 5vw;
     scrollbar-width: thin;
 
     header {
-        margin-top: 130px;
+        position: relative;
+        margin-top: 11rem;
 
         p {
             font-weight: $semiBold-font-weight;
@@ -158,6 +179,11 @@
 
     .cart-item-img {
         width: 120px !important;
+
+    }
+
+    .cart-sliders {
+        visibility: hidden;
     }
 
     .cart-item-amount {
@@ -195,12 +221,19 @@
     }
 }
 
-.mini-cart-container {
-    margin: 0;
+.remove-cart-overlay {
+    position: absolute;
+    top: -30px;
+    right: 0;
+    background: none;
+    display: none;
+    font-size: $medium-font-size;
+    opacity: 0.4;
+    padding: 1rem .5rem;
+    transition: opacity ease-in 300ms;
 
-    header {
-
-        margin-top: 11rem;
+    &:hover {
+        opacity: 1;
     }
 }
 
@@ -218,8 +251,16 @@
     background: none;
     border: 2px solid $third-color;
 
+    &:hover {
+        opacity: 0.7;
+    }
+
     a {
         color: $third-color;
 
     }
+}
+
+.cart-item footer {
+    margin-bottom: 150px;
 }

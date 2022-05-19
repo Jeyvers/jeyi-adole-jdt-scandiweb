@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getData, getCategory, changeCurrency } from './slices/productsSlice';
 import { addItem, calculateTotals } from './slices/cartSlice';
-
+import { FaTimes } from 'react-icons/fa';
 import Products from './components/Products';
 import Navbar from './components/Navbar';
 import { Route, Routes } from 'react-router';
@@ -52,6 +52,12 @@ export class AppWrapper extends Component {
       >
         <div ref={this.miniCart} className='mini-cart-container '>
           <header>
+            <button
+              className='remove-cart-overlay'
+              onClick={(e) => this.removeOrAddMiniCart(e)}
+            >
+              <FaTimes />
+            </button>
             <p>
               My Bag: <span>{this.props.amount} items</span>
             </p>
