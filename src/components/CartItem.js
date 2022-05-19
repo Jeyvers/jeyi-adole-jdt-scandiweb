@@ -13,6 +13,7 @@ export class CartItem extends Component {
   }
 
   ProductAttribute(props) {
+    // this does the same thing as the same component in singleProduct
     const { name, type, items } = props.attribute;
     let defaultValue;
     const allAttributes = Object.keys(props.allAttributes);
@@ -55,7 +56,7 @@ export class CartItem extends Component {
     );
   }
 
-  prevImg(gallery) {
+  prevImg() {
     if (this.state.currentImg > 0) {
       this.setState({ currentImg: this.state.currentImg - 1 });
     } else {
@@ -63,6 +64,7 @@ export class CartItem extends Component {
     }
   }
   nextImg(gallery) {
+    // currentImg is a number that determines the source attribute of the cart-img
     if (this.state.currentImg < gallery.length - 1) {
       this.setState({ currentImg: this.state.currentImg + 1 });
     } else {
@@ -123,7 +125,7 @@ export class CartItem extends Component {
             <img src={gallery && gallery[this.state.currentImg]} alt='' />
             {gallery.length > 1 && (
               <div className='cart-sliders'>
-                <button onClick={() => this.prevImg(gallery)}>
+                <button onClick={() => this.prevImg()}>
                   <AiOutlineLeft />
                 </button>
 

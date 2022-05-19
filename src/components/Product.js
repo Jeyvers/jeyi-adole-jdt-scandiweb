@@ -21,6 +21,7 @@ export class Product extends Component {
     const { id, gallery, name, inStock, defaultPrice } = this.props;
 
     return (
+      // Link to directs to singleProduct page onclick
       <Link to={`/products/${id}`}>
         <div key={id} className='product'>
           <div className='product-img-container'>
@@ -43,10 +44,10 @@ export class Product extends Component {
 
 export default Product;
 // Todos
-// Make mini cart page
-// probably implement slide functionality
+// Make mini cart page >>>
+// implement slide functionality >>>
 // Call for help on useEffect class equivalent
-// Make cartItem info width 100%/min-width of its parent container
-// Write responsive css for all pages and components
+// Make cartItem info width 100%/min-width of its parent container >>>
+// Write responsive css for all pages and components >>>
 // Review work
 // Call Tife & Steve to Review work

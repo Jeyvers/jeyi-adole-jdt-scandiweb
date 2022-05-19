@@ -31,8 +31,9 @@ export class SingleProduct extends Component {
   }
 
   ProductAttribute(props) {
-    const { id, name, type, items } = props.attribute;
+    const { name, type, items } = props.attribute;
     let defaultValue;
+    // allAttributes contains a default value for for each product attribute when data is fetched. Because allAttributes is an object, I get the data from allAttributes in the form 'Color: #333' using the below code, then set defaultValue for each product attribute to default value returned
     const allAttributes = Object.keys(props.allAttributes);
     allAttributes.map(
       (attr) => attr === name && (defaultValue = this.props.allAttributes[name])
@@ -43,6 +44,7 @@ export class SingleProduct extends Component {
         <h4>{name}</h4>
         <div className='name-attributes'>
           {items.map((item, index) => {
+            // If the value of the item we're currently mapping through equals the defaultValue of the particular attribute, set it as the default Item which will then determine the user interface given for the attribute item the user chooses.
             const defaultItem = item.value === defaultValue;
             return !colorSwatch ? (
               <span
@@ -125,6 +127,7 @@ export class SingleProduct extends Component {
       prices,
     } = this.props.productData;
 
+    // DefaultPrice and incart explanation in products.js
     const defaultPrice = prices?.find(
       (price) => price.currency.symbol === this.props.currencyInUse
     );
@@ -132,17 +135,19 @@ export class SingleProduct extends Component {
     const inCart = this.props.cartItems.find((item) =>
       item.id === id ? true : false
     );
-    console.log('inCart', inCart);
+
     return (
       <section className='single-product-container'>
         <div className='all-images'>
           <div className='all-images-image'>
+            {/* Checks if gallery length is greatear than one, then render the picture slide */}
             {gallery?.length > 1 &&
               gallery?.map((picture, index) => (
                 <this.Picture key={index} picture={picture} />
               ))}
           </div>
           <div className='primary-image'>
+            {/* if gallery is undefined, renders active elemnent in state */}
             <img
               src={
                 this.state.active ? this.state.active : gallery && gallery[0]
