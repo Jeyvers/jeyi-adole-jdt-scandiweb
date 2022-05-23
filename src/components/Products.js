@@ -28,7 +28,7 @@ export class Products extends Component {
                   <div className='product-container' key={product.id}>
                     <div className='in-cart-icon'>
                       <button
-                        disabled={inCart}
+                        disabled={!product.inStock ? !product.inStock : inCart}
                         onClick={() => this.props.addItem(product.id)}
                       >
                         <CartIconWhite />

@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { request, gql } from 'graphql-request';
-import { setCart } from './singleProductSlice';
 
 const url = 'http://localhost:4000/';
 
@@ -77,7 +76,6 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    displayItems: (state, action) => {},
     getCategory: (state, action) => {
       state.currentCategory = action.payload;
       const newproductsList = state.categories.find(

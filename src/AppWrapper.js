@@ -16,64 +16,71 @@ export class AppWrapper extends Component {
     super(props);
     this.miniCartOverlay = React.createRef();
     this.miniCart = React.createRef();
-    this.removeOrAddMiniCart = this.removeOrAddMiniCart.bind(this);
+    this.removeMiniCart = this.removeMiniCart.bind(this);
     this.cartOverlay = this.cartOverlay.bind(this);
   }
 
   async componentDidMount() {
     await this.props.getProducts();
     await this.props.loadProducts(this.props.products);
-
     this.props.calculateTotals(this.props.currencyInUse);
   }
 
-  removeOrAddMiniCart(e) {
-    // Receives miniCart ref from AppWrapper and checks the condition of miniCart's classList
-    console.log(e.target, this.miniCart, this.miniCartOverlay);
-    if (
-      e.target.offsetParent !== this.miniCart.current &&
-      e.target !== this.miniCart.current
-    ) {
-      const miniCartClass = this.miniCartOverlay.current.classList;
-      if (miniCartClass.contains('hidden')) {
-        miniCartClass.remove('hidden');
-      } else {
-        miniCartClass.add('hidden');
-      }
+  componentDidUpdate() {
+    this.props.calculateTotals(this.props.currencyInUse);
+  }
+
+  removeMiniCart() {
+    // Removes miniCartOverlay
+    console.log('reunning');
+    console.log(this.props);
+    const Overlay = this.miniCartOverlay.current.classList;
+    if (Overlay.contains('hidden')) {
+      Overlay.remove('hidden');
+      console.log(this.miniCart.current.classList);
+      this.miniCart.current.classList.remove('hidden');
+    } else {
+      Overlay.add('hidden');
+      console.log(this.miniCart.current.classList);
+
+      this.miniCart.current.classList.add('hidden');
     }
   }
 
   cartOverlay() {
+    // IF miniCartOverlay has the hidden class, set miniCartIsFalse
     return (
-      <div
-        ref={this.miniCartOverlay}
-        onClick={(e) => this.removeOrAddMiniCart(e)}
-        className='mini-cart-overlay hidden'
-      >
-        <div ref={this.miniCart} className='mini-cart-container '>
+      <>
+        <div
+          ref={this.miniCartOverlay}
+          onClick={() => this.removeMiniCart()}
+          className='mini-cart-overlay hidden '
+        ></div>
+        <div ref={this.miniCart} className='mini-cart-container hidden'>
           <header>
-            <button
-              className='remove-cart-overlay'
-              onClick={(e) => this.removeOrAddMiniCart(e)}
-            >
-              <FaTimes />
+            {/* Not the best way to solve this >>>. */}
+            <button className='remove-cart-overlay'>
+              <FaTimes onClick={() => this.removeMiniCart()} />
             </button>
             <p>
               My Bag: <span>{this.props.amount} items</span>
             </p>
           </header>
-          <Cart></Cart>
+          <Cart />
           <footer>
             <div className='mini-cart-total'>
               <p>Total</p>
               <p>
                 {' '}
                 {this.props.currencyInUse}
-                {this.props.total}
+                {this.props.total.toFixed(2)}
               </p>
             </div>
             <div className='mini-cart-footer-btns'>
-              <button className='white-btn'>
+              <button
+                className='white-btn '
+                onClick={() => this.removeMiniCart()}
+              >
                 <Link to='/cart'>{'VIEW BAG '}</Link>
               </button>
 
@@ -81,17 +88,14 @@ export class AppWrapper extends Component {
             </div>
           </footer>
         </div>
-      </div>
+      </>
     );
   }
 
   render() {
     return (
       <>
-        <Navbar
-          {...this.props}
-          removeOrAddMiniCart={this.removeOrAddMiniCart}
-        />
+        <Navbar {...this.props} removeMiniCart={this.removeMiniCart} />
         <this.cartOverlay />
 
         <main>
@@ -119,7 +123,7 @@ export class AppWrapper extends Component {
                       <p>{this.props.amount} </p>
                       <p>
                         {this.props.currencyInUse}
-                        {this.props.total ? this.props.total : 0}
+                        {this.props.total ? this.props.total.toFixed(2) : 0}
                       </p>
                     </div>
                   </div>
@@ -154,7 +158,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCategory: (category) => dispatch(getCategory(category)),
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
   loadProducts: (products) => dispatch(loadProducts(products)),
-  calculateTotals: (id) => dispatch(calculateTotals(id)),
+  calculateTotals: (currencyInUse) => dispatch(calculateTotals(currencyInUse)),
   addItem: (id) => dispatch(addItem({ id })),
 });
 

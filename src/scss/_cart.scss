@@ -100,7 +100,7 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba($color: $third-color, $alpha: 0.5);
-    z-index: 1500;
+    z-index: 100;
     left: 0;
     right: 0;
     bottom: 0;
@@ -109,23 +109,24 @@
 
 .mini-cart-container {
 
-    // position: sticky;
+    position: fixed;
     background-color: $first-color;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    top: 110px;
+    right: 0;
     min-width: 400px;
     float: right;
-    z-index: 1200;
+    z-index: 12200;
     padding: 0 2rem;
     overflow: scroll;
     height: 100%;
     margin: 0;
+    padding-bottom: 3rem;
     margin-right: 5vw;
     scrollbar-width: thin;
 
     header {
         position: relative;
-        margin-top: 11rem;
+        margin-top: 4rem;
 
         p {
             font-weight: $semiBold-font-weight;
@@ -137,7 +138,7 @@
     }
 
     footer {
-        margin-bottom: 10px;
+        margin-bottom: 9rem;
         display: flex;
         flex-direction: column;
 

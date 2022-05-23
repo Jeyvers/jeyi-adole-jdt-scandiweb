@@ -14,13 +14,13 @@ const cartSlice = createSlice({
       state.products = action.payload;
     },
     addItem: (state, action) => {
-      console.log(action.payload);
+      console.log('PAYLOAD', action.payload);
       const item = state.products.find(
         (product) => product.id === action.payload.id
       );
-      console.log('WORRIED', state.products);
+      console.log('PREV CARTITEMS', state.cartItems);
       state.cartItems = [...state.cartItems, { ...item, amount: 1 }];
-      console.log(state.cartItems);
+      console.log('CURRENT CARTITEMS', state.cartItems);
       //   console.log(item.id, state.cart[0].id);
     },
     removeItem: (state, action) => {

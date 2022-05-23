@@ -82,10 +82,22 @@
     top: 7px;
   }
 
+  .nav-brand-logo {
+    position: absolute;
+    left: 225px;
+
+    top: 29px;
+  }
+
   .mini-cart-container {
+    top: 160px;
 
     header {
-      margin-top: 12rem;
+      margin-top: 4rem;
+    }
+
+    footer {
+      margin-bottom: 9rem;
     }
   }
 

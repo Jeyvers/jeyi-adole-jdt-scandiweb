@@ -1,3 +1,7 @@
+.in-cart-icon:hover+a .product {
+  box-shadow: $box-shadow;
+}
+
 .product-container {
   position: relative;
 
@@ -6,6 +10,7 @@
 .products {
   //   width: 90vw;
   //   margin: 2rem auto;
+  transition: all 1s ease;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-column-gap: 2rem;
@@ -16,11 +21,18 @@
 
   .product {
     display: flex;
+    padding: 2rem;
     max-width: 400px;
     flex-direction: column;
     background: var(--dark-blue);
     cursor: pointer;
-    box-shadow: var(--box-shadow);
+
+
+    &:hover {
+      box-shadow: $box-shadow;
+    }
+
+
   }
 
   .product-img-container {
