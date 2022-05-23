@@ -781,6 +781,10 @@ button:disabled {
   body {
     overflow-x: hidden;
   }
+  .nav {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
   .single-product-container {
     display: -ms-grid;
     display: grid;
