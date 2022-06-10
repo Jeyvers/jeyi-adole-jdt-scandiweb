@@ -115,17 +115,8 @@ export class SingleProduct extends Component {
   }
 
   render() {
-    const {
-      id,
-      name,
-      inStock,
-      gallery,
-      description,
-      category,
-      attributes,
-      brand,
-      prices,
-    } = this.props.productData;
+    const { id, inStock, gallery, description, prices } =
+      this.props.productData;
 
     // DefaultPrice and incart explanation in products.js
     const defaultPrice = prices?.find(
