@@ -10,25 +10,19 @@ const cartSlice = createSlice({
   },
   reducers: {
     loadProducts: (state, action) => {
-      console.log('cart', action.payload);
       state.products = action.payload;
     },
     addItem: (state, action) => {
-      console.log('PAYLOAD', action.payload);
       const item = state.products.find(
         (product) => product.id === action.payload.id
       );
-      console.log('PREV CARTITEMS', state.cartItems);
       state.cartItems = [...state.cartItems, { ...item, amount: 1 }];
-      console.log('CURRENT CARTITEMS', state.cartItems);
-      //   console.log(item.id, state.cart[0].id);
     },
     removeItem: (state, action) => {
       const itemId = action.payload;
       state.cartItems = state.cartItems.filter((item) => item.id !== itemId);
     },
     increase: (state, { payload }) => {
-      //   console.log(payload);
       const cartItem = state.cartItems.find((item) => item.id === payload.id);
       cartItem.amount += 1;
     },

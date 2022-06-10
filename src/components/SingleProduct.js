@@ -27,6 +27,7 @@ export class SingleProduct extends Component {
   componentDidMount() {
     let { productId } = this.props.params;
     this.props.getSingleProductData(productId);
+    window.scroll(0, 0);
   }
 
   ProductAttribute(props) {
@@ -105,7 +106,7 @@ export class SingleProduct extends Component {
             <h4>Price: </h4>
             <h4 className='price-info'>
               {props.defaultPrice?.currency.symbol}
-              {props.defaultPrice?.amount.toLocaleString()}
+              {props.defaultPrice?.amount.toFixed(2).toLocaleString()}
             </h4>
           </div>
         </div>
@@ -153,6 +154,11 @@ export class SingleProduct extends Component {
               }
               alt=''
             />
+            {!inStock && (
+              <div className='product-outOfStock'>
+                <p>OUT OF STOCK</p>
+              </div>
+            )}
           </div>
         </div>
         <div className='single-product-information'>

@@ -24,6 +24,7 @@ const query = gql`
         gallery
         description
         category
+
         attributes {
           id
           name
@@ -67,9 +68,7 @@ export const getData = createAsyncThunk('products/getData', async () => {
   try {
     const res = await request(url, query);
     return res;
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 });
 
 const productsSlice = createSlice({
@@ -91,7 +90,6 @@ const productsSlice = createSlice({
   extraReducers: {
     [getData.pending]: (state) => {
       state.isLoading = true;
-      console.log('pending');
     },
 
     [getData.fulfilled]: (state, action) => {
@@ -105,14 +103,10 @@ const productsSlice = createSlice({
       );
 
       state.productsList = newproductsList.products;
-      console.log(state.productsList);
     },
 
     [getData.rejected]: (state, action) => {
-      console.log(action.payload);
       state.isLoading = false;
-
-      console.log('rejected');
     },
   },
 });

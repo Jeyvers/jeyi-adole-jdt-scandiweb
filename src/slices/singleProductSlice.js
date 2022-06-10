@@ -40,11 +40,8 @@ export const getSingleProductData = createAsyncThunk(
 
     try {
       const res = await request(url, query);
-      console.log(res);
       return res;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }
 );
 

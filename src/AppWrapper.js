@@ -32,17 +32,13 @@ export class AppWrapper extends Component {
 
   removeMiniCart() {
     // Removes miniCartOverlay
-    console.log('reunning');
-    console.log(this.props);
+
     const Overlay = this.miniCartOverlay.current.classList;
     if (Overlay.contains('hidden')) {
       Overlay.remove('hidden');
-      console.log(this.miniCart.current.classList);
       this.miniCart.current.classList.remove('hidden');
     } else {
       Overlay.add('hidden');
-      console.log(this.miniCart.current.classList);
-
       this.miniCart.current.classList.add('hidden');
     }
   }

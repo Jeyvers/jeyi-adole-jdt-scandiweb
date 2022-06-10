@@ -56,11 +56,11 @@ export class CartItem extends Component {
     );
   }
 
-  prevImg() {
+  prevImg(gallery) {
     if (this.state.currentImg > 0) {
       this.setState({ currentImg: this.state.currentImg - 1 });
     } else {
-      this.setState({ currentImg: 0 });
+      this.setState({ currentImg: gallery.length - 1 });
     }
   }
   nextImg(gallery) {
@@ -79,7 +79,7 @@ export class CartItem extends Component {
       (price) => price.currency.symbol === this.props.currencyInUse
     );
 
-    const finalPrice = defaultPrice.amount * amount;
+    // const finalPrice = defaultPrice.amount * amount;
     return (
       <div className='cart-item'>
         <div className='cart-info'>
@@ -90,11 +90,10 @@ export class CartItem extends Component {
           <div className='price'>
             <h4 className='price-info'>
               {defaultPrice?.currency.symbol}
-              {finalPrice?.toFixed(2).toLocaleString()}
+              {defaultPrice.amount?.toFixed(2).toLocaleString()}
             </h4>
           </div>
 
-          {console.log(this.props)}
           {attributes?.map((attribute) => {
             return (
               <this.ProductAttribute
@@ -125,7 +124,7 @@ export class CartItem extends Component {
             <img src={gallery && gallery[this.state.currentImg]} alt='' />
             {gallery.length > 1 && (
               <div className='cart-sliders'>
-                <button onClick={() => this.prevImg()}>
+                <button onClick={() => this.prevImg(gallery)}>
                   <AiOutlineLeft />
                 </button>
 

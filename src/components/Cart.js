@@ -5,11 +5,14 @@ import CartItem from './CartItem';
 import { setAttributeValue } from '../slices/singleProductSlice';
 
 export class Cart extends Component {
+  componentDidMount() {
+    window.scroll(0, 0);
+  }
+
   render() {
     return (
       <div className='cart-items-container'>
         <div className='cart-items'>
-          {console.log('C', this.props)}
           {this.props.cart?.map((cartItem) => {
             return (
               <CartItem
