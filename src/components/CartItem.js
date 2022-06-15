@@ -34,17 +34,20 @@ export class CartItem extends Component {
               <span
                 key={index}
                 className={`text-attribute ${defaultItem && 'default'}`}
-                onClick={() => this.props.setAttributeValue(name, item.value)}
+                // onClick={() => this.props.setAttributeValue(name, item.value)}
               >
                 {item.value}
               </span>
             ) : (
-              <div className={` ${defaultItem && 'swatch-default'}`}>
+              <div
+                className={` ${defaultItem && 'swatch-default'}`}
+                key={index}
+              >
                 <button
                   key={index}
                   style={{ backgroundColor: item.value }}
                   onClick={() => {
-                    this.props.setAttributeValue(name, item.value);
+                    // this.props.setAttributeValue(name, item.value);
                   }}
                   className='swatch-attribute'
                 ></button>

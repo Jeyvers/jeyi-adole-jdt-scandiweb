@@ -6,7 +6,8 @@ const url = 'http://localhost:4000/';
 const initialState = {
   categories: [],
   productsList: [],
-  currentCategory: 'all',
+  allItems: [],
+  currentCategory: 'clothes',
   currencyInUse: '$',
   currencies: null,
   isLoading: true,
@@ -94,8 +95,10 @@ const productsSlice = createSlice({
 
     [getData.fulfilled]: (state, action) => {
       state.isLoading = false;
-
-      state.categories = action.payload.categories;
+      state.allItems = action.payload.categories;
+      state.categories = action.payload.categories.filter(
+        (category) => category.name !== 'all'
+      );
       state.currencies = action.payload.currencies;
 
       const newproductsList = state.categories.find(

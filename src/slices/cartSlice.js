@@ -10,7 +10,9 @@ const cartSlice = createSlice({
   },
   reducers: {
     loadProducts: (state, action) => {
-      state.products = action.payload;
+      state.products = action.payload.find(
+        (product) => product.name === 'all'
+      ).products;
     },
     addItem: (state, action) => {
       const item = state.products.find(

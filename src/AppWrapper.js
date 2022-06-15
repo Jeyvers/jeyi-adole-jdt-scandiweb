@@ -22,7 +22,7 @@ export class AppWrapper extends Component {
 
   async componentDidMount() {
     await this.props.getProducts();
-    await this.props.loadProducts(this.props.products);
+    await this.props.loadProducts(this.props.allItems);
     this.props.calculateTotals(this.props.currencyInUse);
   }
 
@@ -141,6 +141,7 @@ export class AppWrapper extends Component {
 const mapStateToProps = (state) => ({
   categories: state.products.categories,
   products: state.products.productsList,
+  allItems: state.products.allItems,
   currencies: state.products.currencies,
   currentCategory: state.products.currentCategory,
   currencyInUse: state.products.currencyInUse,

@@ -112,12 +112,21 @@
 
   }
 
+  .mini-cart-container {
+    margin: 0;
+
+    .cart-item {
+      flex-direction: column;
+      min-width: 250px;
+    }
+  }
+
   .cart-item {
-    flex-direction: column;
+    // flex-direction: column;
 
     .cart-showcase {
       margin-top: 20px;
-      height: 260px;
+      // height: 260px;
     }
   }
 

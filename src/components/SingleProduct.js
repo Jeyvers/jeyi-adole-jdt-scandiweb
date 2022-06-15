@@ -55,9 +55,11 @@ export class SingleProduct extends Component {
                 {item.value}
               </span>
             ) : (
-              <div className={` ${defaultItem && 'swatch-default'}`}>
+              <div
+                className={` ${defaultItem && 'swatch-default'}`}
+                key={index}
+              >
                 <button
-                  key={index}
                   style={{ backgroundColor: item.value }}
                   onClick={() => {
                     this.props.setAttributeValue(name, item.value);
