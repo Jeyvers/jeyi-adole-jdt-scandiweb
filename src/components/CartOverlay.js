@@ -19,40 +19,41 @@ import { setMiniCart } from '../slices/cartSlice';
 // }
 
 export class CartOverlay extends Component {
-  constructor(props) {
-    super(props);
-    this.miniCartOverlay = React.createRef();
-    this.miniCart = React.createRef();
-    this.removeMiniCart = this.removeMiniCart.bind(this);
-  }
+  //   constructor(props) {
+  //     super(props);
+  //     this.miniCartOverlay = React.createRef();
+  //     this.miniCart = React.createRef();
+  //     this.removeMiniCart = this.removeMiniCart.bind(this);
+  //   }
 
-  removeMiniCart() {
-    console.log('MINIOVERLAY', this.miniCartOverlay);
-    console.log('MINICART', this.miniCart);
+  //   removeMiniCart() {
+  //     console.log('MINIOVERLAY', this.miniCartOverlay);
+  //     console.log('MINICART', this.miniCart);
 
-    // const Overlay = this.miniCartOverlay.current.classList;
-    // if (Overlay.contains('hidden')) {
-    //   Overlay.remove('hidden');
-    //   this.miniCart.current.classList.remove('hidden');
-    // } else {
-    //   Overlay.add('hidden');
-    //   this.miniCart.current.classList.add('hidden');
-    // }
-  }
+  //     // const Overlay = this.miniCartOverlay.current.classList;
+  //     // if (Overlay.contains('hidden')) {
+  //     //   Overlay.remove('hidden');
+  //     //   this.miniCart.current.classList.remove('hidden');
+  //     // } else {
+  //     //   Overlay.add('hidden');
+  //     //   this.miniCart.current.classList.add('hidden');
+  //     // }
+  //   }
 
   render() {
     return (
       <>
         <div
-          ref={this.miniCartOverlay}
-          onClick={() => this.removeMiniCart()}
+          onClick={() => this.props.setMiniCart()}
           className={`mini-cart-overlay ${!this.props.miniCart && 'hidden'} `}
         ></div>
-        <div ref={this.miniCart} className='mini-cart-container hidden'>
+        <div
+          className={`mini-cart-container ${!this.props.miniCart && 'hidden'} `}
+        >
           <header>
             {/* Not the best way to solve this >>>. */}
             <button className='remove-cart-overlay'>
-              <FaTimes onClick={() => this.removeMiniCart()} />
+              <FaTimes onClick={() => this.props.setMiniCart()} />
             </button>
             <p>
               My Bag: <span>{this.props.amount} items</span>
@@ -71,7 +72,7 @@ export class CartOverlay extends Component {
             <div className='mini-cart-footer-btns'>
               <button
                 className='white-btn '
-                onClick={() => this.removeMiniCart()}
+                onClick={() => this.props.setMiniCart()}
               >
                 <Link to='/cart'>{'VIEW BAG '}</Link>
               </button>
@@ -85,8 +86,6 @@ export class CartOverlay extends Component {
   }
 }
 
-export const CartOverlayInstance = new CartOverlay();
-
 const mapStateToProps = (state) => ({
   currencyInUse: state.products.currencyInUse,
   amount: state.cart.amount,
@@ -95,7 +94,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setMiniCart: dispatch(setMiniCart()),
+  setMiniCart: () => dispatch(setMiniCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartOverlay);

@@ -621,8 +621,15 @@ button:disabled {
   font-weight: 700;
 }
 
+.cart-item {
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
 .cart-item .cart-showcase {
   margin-top: 20px;
+  height: 260px;
 }
 
 .white-btn {
@@ -658,6 +665,7 @@ button:disabled {
   background-color: #fff;
   top: 110px;
   right: 0;
+  min-width: 300px;
   float: right;
   z-index: 12200;
   padding: 0 2rem;
@@ -918,6 +926,12 @@ button:disabled {
         -ms-flex-direction: column;
             flex-direction: column;
     min-width: 250px;
+  }
+  .cart-item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
   .cart-item .cart-showcase {
     margin-top: 20px;

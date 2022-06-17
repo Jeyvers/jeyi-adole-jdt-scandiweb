@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { CartOverlayInstance } from './CartOverlay';
 import { connect } from 'react-redux';
 import {
   BagIcon,
@@ -9,6 +8,7 @@ import {
   ChevronUpIcon,
 } from '../icons';
 import { getCategory } from '../slices/productsSlice';
+import { setMiniCart } from '../slices/cartSlice';
 
 export class Navbar extends Component {
   state = {
@@ -78,8 +78,7 @@ export class Navbar extends Component {
             <button
               className='cart-icon'
               onClick={() => {
-                CartOverlayInstance.removeMiniCart();
-                console.log(CartOverlayInstance.miniCart);
+                this.props.setMiniCart();
               }}
             >
               {this.props.amount > 0 && (
@@ -104,6 +103,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getCategory: (category) => dispatch(getCategory(category)),
+  setMiniCart: () => dispatch(setMiniCart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

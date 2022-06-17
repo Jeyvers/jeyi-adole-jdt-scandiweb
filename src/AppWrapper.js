@@ -88,7 +88,7 @@ export class AppWrapper extends Component {
   render() {
     return (
       <>
-        <Navbar {...this.props} />
+        <Navbar />
         <CartOverlay />
         {/* <this.cartOverlay /> */}
 
