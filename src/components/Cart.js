@@ -16,7 +16,7 @@ export class Cart extends Component {
           {this.props.cart?.map((cartItem) => {
             return (
               <CartItem
-                key={cartItem.id}
+                key={cartItem.uniqueId}
                 {...cartItem}
                 currencyInUse={this.props.currencyInUse}
                 {...this.props}
@@ -36,9 +36,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  increase: (id) => dispatch(increase({ id })),
-  decrease: (id) => dispatch(decrease({ id })),
-  removeItem: (id) => dispatch(removeItem(id)),
+  increase: (uniqueId) => dispatch(increase({ uniqueId })),
+  decrease: (uniqueId) => dispatch(decrease({ uniqueId })),
+  removeItem: (uniqueId) => dispatch(removeItem(uniqueId)),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
 });

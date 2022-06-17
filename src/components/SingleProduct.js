@@ -7,6 +7,7 @@ import {
   setAttributeValue,
 } from '../slices/singleProductSlice';
 import { addItem } from '../slices/cartSlice';
+import _ from 'lodash';
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -22,12 +23,27 @@ export class SingleProduct extends Component {
     this.Picture = this.Picture.bind(this);
     this.ProductAttribute = this.ProductAttribute.bind(this);
     this.SingleProductInformation = this.SingleProductInformation.bind(this);
+    this.validateAddItem = this.validateAddItem.bind(this);
   }
 
   componentDidMount() {
     let { productId } = this.props.params;
     this.props.getSingleProductData(productId);
     window.scroll(0, 0);
+  }
+
+  validateAddItem() {
+    const { id } = this.props.productData;
+    const selectedAttributes = this.props.allAttributes;
+    const itemAttributeExists = this.props.cartItems.find((cartItem) =>
+      _.isEqual(selectedAttributes, cartItem.selectedAttributes)
+    );
+
+    if (itemAttributeExists) {
+      return;
+    } else {
+      this.props.addItem(id, selectedAttributes);
+    }
   }
 
   ProductAttribute(props) {
@@ -161,9 +177,9 @@ export class SingleProduct extends Component {
             defaultPrice={defaultPrice}
           />
           <button
-            disabled={!inStock ? !inStock : inCart}
+            // disabled={!inStock ? !inStock : inCart}
             onClick={() => {
-              this.props.addItem(id);
+              this.validateAddItem();
             }}
             className='add-btn'
           >
@@ -186,7 +202,8 @@ const mapDispatchToProps = (dispatch) => ({
   getSingleProductData: (id) => dispatch(getSingleProductData(id)),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
-  addItem: (id) => dispatch(addItem({ id })),
+  addItem: (id, selectedAttributes) =>
+    dispatch(addItem({ id, selectedAttributes })),
 });
 
 export default withParams(

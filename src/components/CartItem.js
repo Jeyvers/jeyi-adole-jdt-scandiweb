@@ -16,10 +16,10 @@ export class CartItem extends Component {
     // this does the same thing as the same component in singleProduct
     const { name, type, items } = props.attribute;
     let defaultValue;
-    const allAttributes = Object.keys(props.allAttributes);
-    // Maps through all the attributes and sets the defaultValue to the name of the current name in map
-    allAttributes.map(
-      (attr) => attr === name && (defaultValue = props.allAttributes[name])
+    const selectedAttributes = Object.keys(props.allAttributes);
+    // Maps through all the attributes and sets the defaultValue to the name of the current name in the map
+    selectedAttributes.map(
+      (attr) => attr === name && (defaultValue = props.selectedAttributes[name])
     );
     const colorSwatch = type === 'swatch';
 
@@ -76,7 +76,17 @@ export class CartItem extends Component {
   }
 
   render() {
-    const { id, brand, name, prices, attributes, amount, gallery } = this.props;
+    const {
+      id,
+      uniqueId,
+      brand,
+      name,
+      prices,
+      attributes,
+      amount,
+      gallery,
+      selectedAttributes,
+    } = this.props;
 
     const defaultPrice = prices?.find(
       (price) => price.currency.symbol === this.props.currencyInUse
@@ -103,20 +113,21 @@ export class CartItem extends Component {
                 key={attribute.id}
                 attribute={attribute}
                 allAttributes={this.props.allAttributes}
+                selectedAttributes={selectedAttributes}
               />
             );
           })}
         </div>
         <div className='cart-showcase'>
           <div className='cart-item-amount'>
-            <span onClick={() => this.props.increase(id)}>+</span>
+            <span onClick={() => this.props.increase(uniqueId)}>+</span>
             <h2> {amount} </h2>
             <span
               onClick={() => {
                 if (amount === 1) {
-                  this.props.removeItem(id);
+                  this.props.removeItem(uniqueId);
                 } else {
-                  this.props.decrease(id);
+                  this.props.decrease(uniqueId);
                 }
               }}
             >

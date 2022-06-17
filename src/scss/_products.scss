@@ -72,6 +72,11 @@
   position: relative;
   font-size: $regular-font-size;
   padding: 1rem 0;
+
+  span {
+    width: 25ch;
+    display: inline-block;
+  }
 }
 
 .product-information p {

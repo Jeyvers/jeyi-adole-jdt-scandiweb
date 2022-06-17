@@ -274,6 +274,11 @@ nav .cart-icon .cart-icon-amount {
   padding: 1rem 0;
 }
 
+.product-information span {
+  width: 25ch;
+  display: inline-block;
+}
+
 .product-information p {
   padding: 0.5rem 0;
 }
