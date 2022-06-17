@@ -10,127 +10,94 @@ import SingleProduct from './components/SingleProduct';
 import Cart from './components/Cart';
 import { loadProducts } from './slices/cartSlice';
 import { Link } from 'react-router-dom';
+import CartPage from './Pages/CartPage';
+import Error from './Pages/Error';
+import CartOverlay from './components/CartOverlay';
 
 export class AppWrapper extends Component {
-  constructor(props) {
-    super(props);
-    this.miniCartOverlay = React.createRef();
-    this.miniCart = React.createRef();
-    this.removeMiniCart = this.removeMiniCart.bind(this);
-    this.cartOverlay = this.cartOverlay.bind(this);
-  }
-
-  async componentDidMount() {
-    await this.props.getProducts();
-    await this.props.loadProducts(this.props.allItems);
-    this.props.calculateTotals(this.props.currencyInUse);
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.miniCartOverlay = React.createRef();
+  //   this.miniCart = React.createRef();
+  //   this.removeMiniCart = this.removeMiniCart.bind(this);
+  //   this.cartOverlay = this.cartOverlay.bind(this);
+  // }
 
   componentDidUpdate() {
     this.props.calculateTotals(this.props.currencyInUse);
   }
 
-  removeMiniCart() {
-    // Removes miniCartOverlay
+  // removeMiniCart() {
+  //   // Removes miniCartOverlay
 
-    const Overlay = this.miniCartOverlay.current.classList;
-    if (Overlay.contains('hidden')) {
-      Overlay.remove('hidden');
-      this.miniCart.current.classList.remove('hidden');
-    } else {
-      Overlay.add('hidden');
-      this.miniCart.current.classList.add('hidden');
-    }
-  }
+  //   const Overlay = this.miniCartOverlay.current.classList;
+  //   if (Overlay.contains('hidden')) {
+  //     Overlay.remove('hidden');
+  //     this.miniCart.current.classList.remove('hidden');
+  //   } else {
+  //     Overlay.add('hidden');
+  //     this.miniCart.current.classList.add('hidden');
+  //   }
+  // }
 
-  cartOverlay() {
-    // IF miniCartOverlay has the hidden class, set miniCartIsFalse
-    return (
-      <>
-        <div
-          ref={this.miniCartOverlay}
-          onClick={() => this.removeMiniCart()}
-          className='mini-cart-overlay hidden '
-        ></div>
-        <div ref={this.miniCart} className='mini-cart-container hidden'>
-          <header>
-            {/* Not the best way to solve this >>>. */}
-            <button className='remove-cart-overlay'>
-              <FaTimes onClick={() => this.removeMiniCart()} />
-            </button>
-            <p>
-              My Bag: <span>{this.props.amount} items</span>
-            </p>
-          </header>
-          <Cart />
-          <footer>
-            <div className='mini-cart-total'>
-              <p>Total</p>
-              <p>
-                {' '}
-                {this.props.currencyInUse}
-                {this.props.total.toFixed(2)}
-              </p>
-            </div>
-            <div className='mini-cart-footer-btns'>
-              <button
-                className='white-btn '
-                onClick={() => this.removeMiniCart()}
-              >
-                <Link to='/cart'>{'VIEW BAG '}</Link>
-              </button>
+  // cartOverlay() {
+  //   // IF miniCartOverlay has the hidden class, set miniCartIsFalse
+  //   return (
+  //     <>
+  //       <div
+  //         ref={this.miniCartOverlay}
+  //         onClick={() => this.removeMiniCart()}
+  //         className='mini-cart-overlay hidden '
+  //       ></div>
+  //       <div ref={this.miniCart} className='mini-cart-container hidden'>
+  //         <header>
+  //           {/* Not the best way to solve this >>>. */}
+  //           <button className='remove-cart-overlay'>
+  //             <FaTimes onClick={() => this.removeMiniCart()} />
+  //           </button>
+  //           <p>
+  //             My Bag: <span>{this.props.amount} items</span>
+  //           </p>
+  //         </header>
+  //         <Cart />
+  //         <footer>
+  //           <div className='mini-cart-total'>
+  //             <p>Total</p>
+  //             <p>
+  //               {' '}
+  //               {this.props.currencyInUse}
+  //               {this.props.total.toFixed(2)}
+  //             </p>
+  //           </div>
+  //           <div className='mini-cart-footer-btns'>
+  //             <button
+  //               className='white-btn '
+  //               onClick={() => this.removeMiniCart()}
+  //             >
+  //               <Link to='/cart'>{'VIEW BAG '}</Link>
+  //             </button>
 
-              <button className='add-btn'>CHECK OUT</button>
-            </div>
-          </footer>
-        </div>
-      </>
-    );
-  }
+  //             <button className='add-btn'>CHECK OUT</button>
+  //           </div>
+  //         </footer>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   render() {
     return (
       <>
-        <Navbar {...this.props} removeMiniCart={this.removeMiniCart} />
-        <this.cartOverlay />
+        <Navbar {...this.props} />
+        <CartOverlay />
+        {/* <this.cartOverlay /> */}
 
         <main>
           <Routes>
-            <Route exact path='/' element={<Products {...this.props} />} />
-            <Route
-              path='/products/:productId'
-              element={
-                <SingleProduct currencyInUse={this.props.currencyInUse} />
-              }
-            />
-            <Route
-              path='/cart'
-              element={
-                <div className='cart-body'>
-                  <h2>CART</h2>
-                  <Cart />
-
-                  <div className='cart-item footer'>
-                    <div>
-                      <p>Quanity:</p>
-                      <p>Total:</p>
-                    </div>
-                    <div className='numbers'>
-                      <p>{this.props.amount} </p>
-                      <p>
-                        {this.props.currencyInUse}
-                        {this.props.total ? this.props.total.toFixed(2) : 0}
-                      </p>
-                    </div>
-                  </div>
-                  <button className='add-btn'>ORDER</button>
-                </div>
-              }
-            />
-            <Route
-              path='*'
-              element={<h2>Nothing here. Please go back to main page.</h2>}
-            />
+            <Route exact path='/' element={<Products />} />
+            <Route path='/products/:productId' element={<SingleProduct />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='*' element={<Error />} />
           </Routes>
         </main>
       </>

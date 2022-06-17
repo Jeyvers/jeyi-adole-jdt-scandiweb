@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { CartIconWhite } from '../icons';
 import Product from './Product';
+import { connect } from 'react-redux';
+import { getData, getCategory, changeCurrency } from '../slices/productsSlice';
+import { addItem, calculateTotals } from '../slices/cartSlice';
+import { loadProducts } from '../slices/cartSlice';
 
 export class Products extends Component {
+  componentDidUpdate() {
+    this.props.calculateTotals(this.props.currencyInUse);
+  }
+  async componentDidMount() {
+    await this.props.getProducts();
+    await this.props.loadProducts(this.props.allItems);
+    this.props.calculateTotals(this.props.currencyInUse);
+  }
+
   render() {
     return (
       <>
@@ -50,4 +63,24 @@ export class Products extends Component {
   }
 }
 
-export default Products;
+const mapStateToProps = (state) => ({
+  categories: state.products.categories,
+  products: state.products.productsList,
+  allItems: state.products.allItems,
+  currencies: state.products.currencies,
+  currentCategory: state.products.currentCategory,
+  currencyInUse: state.products.currencyInUse,
+  amount: state.cart.amount,
+  total: state.cart.total,
+  cartItems: state.cart.cartItems,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getProducts: () => dispatch(getData()),
+  getCategory: (category) => dispatch(getCategory(category)),
+  changeCurrency: (currency) => dispatch(changeCurrency(currency)),
+  loadProducts: (products) => dispatch(loadProducts(products)),
+  calculateTotals: (currencyInUse) => dispatch(calculateTotals(currencyInUse)),
+  addItem: (id) => dispatch(addItem({ id })),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

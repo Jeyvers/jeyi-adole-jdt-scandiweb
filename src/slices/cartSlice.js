@@ -9,12 +9,16 @@ const cartSlice = createSlice({
     cartItems: [],
     amount: 0,
     total: 0,
+    miniCart: false,
   },
   reducers: {
     loadProducts: (state, action) => {
       state.products = action.payload.find(
         (product) => product.name === 'all'
       ).products;
+    },
+    setMiniCart: (state, action) => {
+      state.miniCart = !state.miniCart;
     },
     addItem: (state, action) => {
       const uniqueId = uuidv4();
@@ -80,5 +84,6 @@ export const {
   decrease,
   removeItem,
   calculateTotals,
+  setMiniCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -196,6 +196,7 @@ const mapStateToProps = (state) => ({
   productData: state.singleProduct.productData,
   allAttributes: state.singleProduct.attributes,
   cartItems: state.cart.cartItems,
+  currencyInUse: state.products.currencyInUse,
 });
 
 const mapDispatchToProps = (dispatch) => ({
