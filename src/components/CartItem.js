@@ -19,7 +19,11 @@ export class CartItem extends Component {
     const selectedAttributes = Object.keys(props.allAttributes);
     // Maps through all the attributes and sets the defaultValue to the name of the current name in the map
     selectedAttributes.map(
-      (attr) => attr === name && (defaultValue = props.selectedAttributes[name])
+      (attr) =>
+        attr === name &&
+        (defaultValue = props.selectedAttributes
+          ? props.selectedAttributes[name]
+          : props.allAttributes[name])
     );
     const colorSwatch = type === 'swatch';
 
@@ -77,7 +81,6 @@ export class CartItem extends Component {
 
   render() {
     const {
-      id,
       uniqueId,
       brand,
       name,
@@ -92,7 +95,6 @@ export class CartItem extends Component {
       (price) => price.currency.symbol === this.props.currencyInUse
     );
 
-    // const finalPrice = defaultPrice.amount * amount;
     return (
       <div className='cart-item'>
         <div className='cart-info'>
@@ -108,11 +110,15 @@ export class CartItem extends Component {
           </div>
 
           {attributes?.map((attribute) => {
+            const newAttrArray = {};
+            const { name, items } = attribute;
+            newAttrArray[name] = items[0].value;
+
             return (
               <this.ProductAttribute
                 key={attribute.id}
                 attribute={attribute}
-                allAttributes={this.props.allAttributes}
+                allAttributes={newAttrArray}
                 selectedAttributes={selectedAttributes}
               />
             );

@@ -5,41 +5,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setMiniCart } from '../slices/cartSlice';
 
-// export function removeMiniCart() {
-//   console.log('removing mini cart');
-//   console.log(CartOverlay);
-//   const Overlay = this.miniCartOverlay.current.classList;
-//   if (Overlay.contains('hidden')) {
-//     Overlay.remove('hidden');
-//     this.miniCart.current.classList.remove('hidden');
-//   } else {
-//     Overlay.add('hidden');
-//     this.miniCart.current.classList.add('hidden');
-//   }
-// }
-
-export class CartOverlay extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.miniCartOverlay = React.createRef();
-  //     this.miniCart = React.createRef();
-  //     this.removeMiniCart = this.removeMiniCart.bind(this);
-  //   }
-
-  //   removeMiniCart() {
-  //     console.log('MINIOVERLAY', this.miniCartOverlay);
-  //     console.log('MINICART', this.miniCart);
-
-  //     // const Overlay = this.miniCartOverlay.current.classList;
-  //     // if (Overlay.contains('hidden')) {
-  //     //   Overlay.remove('hidden');
-  //     //   this.miniCart.current.classList.remove('hidden');
-  //     // } else {
-  //     //   Overlay.add('hidden');
-  //     //   this.miniCart.current.classList.add('hidden');
-  //     // }
-  //   }
-
+class CartOverlay extends Component {
   render() {
     return (
       <>

@@ -1,6 +1,5 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import _ from 'lodash';
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -28,7 +27,7 @@ const cartSlice = createSlice({
       //   uniqueId,
       //   _.isEqual(selectedAttributes, action.payload.selectedAttributes)
       // );
-      console.log(uniqueId);
+
       const item = state.products.find(
         (product) => product.id === action.payload.id
       );
@@ -40,7 +39,6 @@ const cartSlice = createSlice({
       };
 
       state.cartItems = [...state.cartItems, fullItem];
-      console.log(state.cartItems);
     },
     removeItem: (state, action) => {
       const itemId = action.payload;
