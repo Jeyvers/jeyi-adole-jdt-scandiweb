@@ -7,9 +7,6 @@ import { addItem, calculateTotals } from '../slices/cartSlice';
 import { loadProducts } from '../slices/cartSlice';
 
 export class Products extends Component {
-  componentDidUpdate() {
-    this.props.calculateTotals(this.props.currencyInUse);
-  }
   async componentDidMount() {
     await this.props.getProducts();
     await this.props.loadProducts(this.props.allItems);

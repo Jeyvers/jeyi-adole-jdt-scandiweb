@@ -161,4 +161,3 @@ export class CartItem extends Component {
 }
 
 export default CartItem;
-// inhospitable environment, low mortility

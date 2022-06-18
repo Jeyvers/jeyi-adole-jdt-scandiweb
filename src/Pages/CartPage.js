@@ -11,7 +11,7 @@ export class CartPage extends Component {
 
         <div className='cart-item footer'>
           <div>
-            <p>Quanity:</p>
+            <p>Quantity:</p>
             <p>Total:</p>
           </div>
           <div className='numbers'>
