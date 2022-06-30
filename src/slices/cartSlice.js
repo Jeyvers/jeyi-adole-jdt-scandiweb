@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
 const cartSlice = createSlice({
@@ -21,12 +21,6 @@ const cartSlice = createSlice({
     },
     addItem: (state, action) => {
       const uniqueId = uuidv4();
-      // const selectedAttributes = { Size: '40' };
-      // console.log(
-      //   'WITH LODASH',
-      //   uniqueId,
-      //   _.isEqual(selectedAttributes, action.payload.selectedAttributes)
-      // );
 
       const item = state.products.find(
         (product) => product.id === action.payload.id

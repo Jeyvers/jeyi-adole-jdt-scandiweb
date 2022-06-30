@@ -7,7 +7,7 @@ const initialState = {
   categories: [],
   productsList: [],
   allItems: [],
-  currentCategory: 'clothes',
+  currentCategory: 'all',
   currencyInUse: '$',
   currencies: null,
   isLoading: true,
@@ -53,18 +53,6 @@ const query = gql`
   }
 `;
 
-// Fetching individual categories.
-// {
-//   category(input: { title: "tech" }) {
-//     name
-//     products {
-//       id
-//       gallery
-//       name
-//     }
-//   }
-// }
-
 export const getData = createAsyncThunk('products/getData', async () => {
   try {
     const res = await request(url, query);
@@ -96,9 +84,7 @@ const productsSlice = createSlice({
     [getData.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.allItems = action.payload.categories;
-      state.categories = action.payload.categories.filter(
-        (category) => category.name !== 'all'
-      );
+      state.categories = action.payload.categories;
       state.currencies = action.payload.currencies;
 
       const newproductsList = state.categories.find(

@@ -207,10 +207,6 @@ nav .cart-icon .cart-icon-amount {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  place-items: center;
 }
 
 .products .product {
@@ -290,10 +286,10 @@ nav .cart-icon .cart-icon-amount {
 .in-cart-icon button {
   display: none;
   position: absolute;
-  bottom: 60px;
+  bottom: 55px;
   padding: 1rem;
   border-radius: 50%;
-  left: 80%;
+  left: 290px;
   z-index: 1000;
   background-color: #5ece7b;
   -webkit-transition: all ease-in 3s;
@@ -329,6 +325,10 @@ button:disabled {
   width: 100%;
   height: 100%;
   gap: 3rem;
+}
+
+.single-product-container ul {
+  list-style-type: disc;
 }
 
 .single-product-container .product-outOfStock {
@@ -446,10 +446,12 @@ button:disabled {
 }
 
 .name-attributes .swatch-attribute {
+  -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   width: 38px;
   height: 35px;
   padding: 10px;
-  margin: .1rem;
+  margin: .2rem;
 }
 
 .name-attributes .swatch-attribute .selected-color {
@@ -491,6 +493,10 @@ button:disabled {
 
 .cart-body {
   margin-top: 10rem;
+}
+
+.cart-body .add-btn {
+  margin-bottom: 80px;
 }
 
 .cart-items-container {

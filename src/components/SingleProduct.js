@@ -133,7 +133,8 @@ export class SingleProduct extends Component {
   }
 
   render() {
-    const { inStock, gallery, description, prices } = this.props.productData;
+    const { id, inStock, gallery, description, prices } =
+      this.props.productData;
 
     // DefaultPrice and incart explanation in products.js
     const defaultPrice = prices?.find(
@@ -173,6 +174,7 @@ export class SingleProduct extends Component {
           />
           <button
             // Not disable but doesn't work if the item with specific attributes are already in cart
+            disabled={!inStock}
             onClick={() => {
               this.validateAddItem();
             }}
