@@ -10,7 +10,6 @@
 }
 
 nav {
-  // @include flexCenter(row, space-between);
   display: grid;
   grid-template-columns: repeat(3, 1fr) auto;
   align-items: center;
@@ -19,8 +18,6 @@ nav {
   width: 90%;
   height: 100%;
   background: $first-color;
-
-  // position: sticky;
 
   ul {
     @include flexCenter(row, space-between);

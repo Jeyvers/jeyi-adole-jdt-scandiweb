@@ -55,6 +55,7 @@ export class SingleProduct extends Component {
       (attr) => attr === name && (defaultValue = this.props.allAttributes[name])
     );
     const colorSwatch = type === 'swatch';
+
     return (
       <div className='attribute'>
         <h4>{name}</h4>

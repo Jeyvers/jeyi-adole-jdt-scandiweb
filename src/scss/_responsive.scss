@@ -1,5 +1,3 @@
-// @import 'config';
-
 @include media-lg {
 
   .primary-image {
@@ -24,7 +22,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 
-    // @include flexCenter(column, center);
     .product-outOfStock {
       height: 400px;
     }
@@ -127,7 +124,7 @@
 
     .cart-showcase {
       margin-top: 20px;
-      // height: 260px;
+
     }
   }
 
