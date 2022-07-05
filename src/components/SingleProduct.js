@@ -16,6 +16,7 @@ function withParams(Component) {
 export class SingleProduct extends Component {
   constructor(props) {
     super(props);
+    this.getDataRef = React.createRef(true);
     this.state = {
       active: '',
     };
@@ -28,8 +29,14 @@ export class SingleProduct extends Component {
 
   componentDidMount() {
     let { productId } = this.props.params;
-    this.props.getSingleProductData(productId);
+    if (!this.getDataRef.current) {
+      this.props.getSingleProductData(productId);
+    }
     window.scroll(0, 0);
+  }
+
+  componentWillUnmount() {
+    this.getDataRef.current = true;
   }
 
   validateAddItem() {

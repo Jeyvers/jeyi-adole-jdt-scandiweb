@@ -21,6 +21,7 @@ ul {
   z-index: 2000;
   position: fixed;
   top: 0;
+  height: 80px;
   background: #fff;
   display: -ms-grid;
   display: grid;
@@ -38,7 +39,7 @@ nav {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 80px;
+  height: 120px;
   width: 90%;
   height: 100%;
   background: #fff;

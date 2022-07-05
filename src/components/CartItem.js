@@ -101,7 +101,7 @@ export class CartItem extends Component {
           <div className='price'>
             <h4 className='price-info'>
               {defaultPrice?.currency.symbol}
-              {defaultPrice.amount?.toFixed(2).toLocaleString()}
+              {defaultPrice?.amount?.toFixed(2).toLocaleString()}
             </h4>
           </div>
 

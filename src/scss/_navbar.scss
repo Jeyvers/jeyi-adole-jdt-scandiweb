@@ -3,6 +3,7 @@
   z-index: 2000;
   position: fixed;
   top: 0;
+  height: 80px;
   background: $first-color;
   display: grid;
   place-items: center;
@@ -14,7 +15,7 @@ nav {
   grid-template-columns: repeat(3, 1fr) auto;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 120px;
   width: 90%;
   height: 100%;
   background: $first-color;

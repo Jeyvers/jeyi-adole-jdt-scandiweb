@@ -21,7 +21,6 @@ const cartSlice = createSlice({
     },
     addItem: (state, action) => {
       const uniqueId = uuidv4();
-
       const item = state.products.find(
         (product) => product.id === action.payload.id
       );
@@ -31,6 +30,21 @@ const cartSlice = createSlice({
         amount: 1,
         selectedAttributes: action.payload.selectedAttributes,
       };
+      // console.log(fullItem);
+
+      // const itemExists = state.cartItems.findIndex(
+      //   (item) => item.id === fullItem.id
+      // );
+
+      // if (itemExists !== -1) {
+      //   console.log('Item Exists, push to existing array', itemExists);
+      //   console.log(state.cartItems[itemExists]);
+
+      //   // Push to existing object
+      // } else {
+      //   console.log('Item does not exist, create new array', itemExists);
+      //   // Create a new object and add to cart
+      // }
 
       state.cartItems = [...state.cartItems, fullItem];
     },
@@ -59,8 +73,11 @@ const cartSlice = createSlice({
         const defaultPrice = item.prices?.find(
           (price) => price.currency.symbol === action.payload
         );
+
         amount += item.amount;
-        total += item.amount * defaultPrice.amount;
+        if (defaultPrice) {
+          total += item.amount * defaultPrice.amount;
+        }
       });
 
       state.amount = amount;

@@ -39,7 +39,17 @@ export class Products extends Component {
                     <div className='in-cart-icon'>
                       <button
                         disabled={!product.inStock ? !product.inStock : inCart}
-                        onClick={() => this.props.addItem(product.id)}
+                        onClick={() => {
+                          // Sets default attributes
+                          const newAttrArray = {};
+                          product.attributes.map((attribute) => {
+                            const { name, items } = attribute;
+                            return (newAttrArray[name] = items[0].value);
+                          });
+                          const selectedAttributes = newAttrArray;
+                          console.log(product.id, selectedAttributes);
+                          this.props.addItem(product.id, selectedAttributes);
+                        }}
                       >
                         <CartIconWhite />
                       </button>
@@ -78,6 +88,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeCurrency: (currency) => dispatch(changeCurrency(currency)),
   loadProducts: (products) => dispatch(loadProducts(products)),
   calculateTotals: (currencyInUse) => dispatch(calculateTotals(currencyInUse)),
-  addItem: (id) => dispatch(addItem({ id })),
+  addItem: (id, selectedAttributes) =>
+    dispatch(addItem({ id, selectedAttributes })),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Products);
