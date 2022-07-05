@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import { request, gql } from 'graphql-request';
 
 const url = 'http://localhost:4000/';
@@ -55,12 +55,13 @@ const singleProductSlice = createSlice({
   reducers: {
     setAttributeValue: (state, action) => {
       state.attributes[action.payload.name] = action.payload.value;
+      console.log(current(state.attributes));
     },
   },
   extraReducers: {
     [getSingleProductData.fulfilled]: (state, action) => {
-      const newAttrArray = {};
       state.productData = action.payload.product;
+      const newAttrArray = {};
       action.payload.product.attributes.map((attribute) => {
         const { name, items } = attribute;
         return (newAttrArray[name] = items[0].value);

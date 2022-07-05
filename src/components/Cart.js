@@ -14,14 +14,16 @@ export class Cart extends Component {
       <div className='cart-items-container'>
         <div className='cart-items'>
           {this.props.cart?.map((cartItem) => {
-            return (
-              <CartItem
-                key={cartItem.uniqueId}
-                {...cartItem}
-                currencyInUse={this.props.currencyInUse}
-                {...this.props}
-              />
-            );
+            return cartItem.items?.map((item) => {
+              return (
+                <CartItem
+                  key={item.uniqueId}
+                  {...item}
+                  currencyInUse={this.props.currencyInUse}
+                  {...this.props}
+                />
+              );
+            });
           })}
         </div>
       </div>
@@ -38,7 +40,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   increase: (uniqueId) => dispatch(increase({ uniqueId })),
   decrease: (uniqueId) => dispatch(decrease({ uniqueId })),
-  removeItem: (uniqueId) => dispatch(removeItem(uniqueId)),
+  removeItem: (uniqueId, id) => dispatch(removeItem({ uniqueId, id })),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),
 });

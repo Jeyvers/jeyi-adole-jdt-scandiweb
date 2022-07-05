@@ -42,12 +42,20 @@ export class SingleProduct extends Component {
   validateAddItem() {
     const { id } = this.props.productData;
     const selectedAttributes = this.props.allAttributes;
-    const itemAttributeExists = this.props.cartItems.find((cartItem) =>
-      _.isEqual(selectedAttributes, cartItem.selectedAttributes)
+    // Map through the items of each cartItemContainer and see if an item with the specific attributes of selectedAttributes exists.
+    const selectedItem = this.props.cartItems.find(
+      (cartItem) => cartItem.id === id
     );
 
-    if (itemAttributeExists) {
-      return;
+    if (selectedItem) {
+      const attributeExists = selectedItem.items.find((item) =>
+        _.isEqual(selectedAttributes, item.selectedAttributes)
+      );
+      if (attributeExists) {
+        return;
+      } else {
+        this.props.addItem(id, selectedAttributes);
+      }
     } else {
       this.props.addItem(id, selectedAttributes);
     }

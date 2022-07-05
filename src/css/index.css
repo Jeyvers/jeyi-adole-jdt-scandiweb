@@ -849,6 +849,7 @@ button:disabled {
     overflow-x: hidden;
   }
   .nav {
+    width: 100%;
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }

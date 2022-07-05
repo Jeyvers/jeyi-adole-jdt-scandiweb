@@ -77,6 +77,7 @@ export class CartItem extends Component {
 
   render() {
     const {
+      id,
       uniqueId,
       brand,
       name,
@@ -127,7 +128,7 @@ export class CartItem extends Component {
             <span
               onClick={() => {
                 if (amount === 1) {
-                  this.props.removeItem(uniqueId);
+                  this.props.removeItem(uniqueId, id);
                 } else {
                   this.props.decrease(uniqueId);
                 }
