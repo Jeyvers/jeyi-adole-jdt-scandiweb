@@ -36,14 +36,17 @@ class CartOverlay extends Component {
               </p>
             </div>
             <div className='mini-cart-footer-btns'>
-              <button
-                className='white-btn '
-                onClick={() => this.props.setMiniCart()}
-              >
-                <Link to='/cart'>{'VIEW BAG '}</Link>
-              </button>
-
-              <button className='add-btn'>CHECK OUT</button>
+              <Link to='/cart'>
+                <button
+                  className='cart-btn view'
+                  onClick={() => this.props.setMiniCart()}
+                >
+                  {'VIEW BAG '}
+                </button>
+              </Link>
+              <Link to='/'>
+                <button className='cart-btn check'>CHECK OUT</button>
+              </Link>
             </div>
           </footer>
         </div>

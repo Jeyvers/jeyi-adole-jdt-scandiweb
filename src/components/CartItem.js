@@ -123,14 +123,14 @@ export class CartItem extends Component {
         </div>
         <div className='cart-showcase'>
           <div className='cart-item-amount'>
-            <span onClick={() => this.props.increase(uniqueId)}>+</span>
+            <span onClick={() => this.props.increase(uniqueId, id)}>+</span>
             <h2> {amount} </h2>
             <span
               onClick={() => {
                 if (amount === 1) {
                   this.props.removeItem(uniqueId, id);
                 } else {
-                  this.props.decrease(uniqueId);
+                  this.props.decrease(uniqueId, id);
                 }
               }}
             >

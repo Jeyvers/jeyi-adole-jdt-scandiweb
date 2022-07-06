@@ -38,8 +38,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  increase: (uniqueId) => dispatch(increase({ uniqueId })),
-  decrease: (uniqueId) => dispatch(decrease({ uniqueId })),
+  increase: (uniqueId, id) => dispatch(increase({ uniqueId, id })),
+  decrease: (uniqueId, id) => dispatch(decrease({ uniqueId, id })),
   removeItem: (uniqueId, id) => dispatch(removeItem({ uniqueId, id })),
   setAttributeValue: (name, value) =>
     dispatch(setAttributeValue({ name, value })),

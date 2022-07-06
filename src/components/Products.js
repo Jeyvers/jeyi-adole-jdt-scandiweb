@@ -47,7 +47,6 @@ export class Products extends Component {
                             return (newAttrArray[name] = items[0].value);
                           });
                           const selectedAttributes = newAttrArray;
-                          console.log(product.id, selectedAttributes);
                           this.props.addItem(product.id, selectedAttributes);
                         }}
                       >

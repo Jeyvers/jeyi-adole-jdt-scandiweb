@@ -47,10 +47,7 @@ const cartSlice = createSlice({
           id: action.payload.id,
           items: [fullItem],
         });
-        console.log(current(state.cartItems));
       }
-
-      // state.cartItems = [...state.cartItems, fullItem];
     },
     removeItem: (state, action) => {
       const itemId = action.payload.id;
@@ -72,24 +69,24 @@ const cartSlice = createSlice({
       }
     },
     increase: (state, { payload }) => {
-      let selectedItem;
-      state.cartItems?.map((cartItem) => {
-        return (selectedItem = cartItem.items?.find(
-          (item) => item.uniqueId === payload.uniqueId
-        ));
-      });
+      const selectedItem = state.cartItems.find(
+        (cartItem) => cartItem.id === payload.id
+      );
+      const singleItem = selectedItem.items.find(
+        (item) => item.uniqueId === payload.uniqueId
+      );
 
-      selectedItem.amount += 1;
+      singleItem.amount += 1;
     },
     decrease: (state, { payload }) => {
-      let selectedItem;
-      state.cartItems?.map((cartItem) => {
-        return (selectedItem = cartItem.items?.find(
-          (item) => item.uniqueId === payload.uniqueId
-        ));
-      });
+      const selectedItem = state.cartItems.find(
+        (cartItem) => cartItem.id === payload.id
+      );
+      const singleItem = selectedItem.items.find(
+        (item) => item.uniqueId === payload.uniqueId
+      );
 
-      selectedItem.amount -= 1;
+      singleItem.amount -= 1;
     },
     calculateTotals: (state, action) => {
       let amount = 0;

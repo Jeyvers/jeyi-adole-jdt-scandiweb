@@ -639,19 +639,6 @@ button:disabled {
   height: 260px;
 }
 
-.white-btn {
-  background: none;
-  border: 2px solid #000000;
-}
-
-.white-btn:hover {
-  opacity: 0.7;
-}
-
-.white-btn a {
-  color: #000000;
-}
-
 .cart-item footer {
   margin-bottom: 150px;
 }
@@ -752,7 +739,7 @@ button:disabled {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin: 1rem 0;
 }
 
@@ -833,6 +820,32 @@ button:disabled {
 
 .remove-cart-overlay:hover {
   opacity: 1;
+}
+
+.cart-btn {
+  padding: 1rem 2rem;
+  min-width: -webkit-max-content;
+  min-width: -moz-max-content;
+  min-width: max-content;
+  font-weight: 600;
+}
+
+.cart-btn.view {
+  background: none;
+  border: 1.5px solid #000000;
+}
+
+.cart-btn.view:hover {
+  opacity: 0.7;
+}
+
+.cart-btn.view a {
+  color: #000000;
+}
+
+.cart-btn.check {
+  background-color: #5ece7b;
+  color: white;
 }
 
 @media screen and (min-width: 1011px) and (min-width: 1284px) {

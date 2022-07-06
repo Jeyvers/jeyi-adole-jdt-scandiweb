@@ -55,7 +55,6 @@ const singleProductSlice = createSlice({
   reducers: {
     setAttributeValue: (state, action) => {
       state.attributes[action.payload.name] = action.payload.value;
-      console.log(current(state.attributes));
     },
   },
   extraReducers: {
