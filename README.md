@@ -1,4 +1,4 @@
-Solution for A Frontend React Junior Developer task.
+Solution for A Frontend React Developer task.
 Technologies in use:
 a. Create-react-app (for react),
 b. Graphqlrequest - to pull data from scandiweb junior developer endpoint
